@@ -15,12 +15,36 @@
         <?= $template->breadCrumbs(['Libros'=>null]) ?>
         <?= $template->messages() ?>
 
-        <main>
-            <h1><?= APP_NAME?></h1>
+        <main> 
+
             <h2>Lista completa de libros</h2>
-
-            <a class="button" href="/Libro/create">Nuevo libro</a>
-
+            <br>
+            <?php 
+        			
+                // coloca el formulario para poner o quitar filtro
+                echo $template->filter(
+                    // opciones para el desplegable "buscar en"
+                    [
+                        'Título' => 'titulo',
+                        'Editorial' => 'editorial',
+                        'Autor' => 'autor',
+                        'ISBN' => 'isbn'     
+                    ],
+                    
+                    // opciones para el desplegable "ordenar por"
+                    [
+                        'Título' => 'titulo',
+                        'Editorial' => 'editorial',
+                        'Autor' => 'autor',
+                        'ISBN' => 'isbn'   
+                    ],
+                    'Tiítulo', // opción seleccionada por defecto en "buscar en"
+                    'Tiítulo', // opción seleccionada por defecto en "ordenar por"
+                    $filtro  // filtro aplicado (null si no hay) - viene del controlador
+                );?>
+            <div class="right">
+                <?= $paginator->stats() ?>
+            </div>
             <?php if($libros){ ?>
                 <table class="table w100">
                     <tr>
@@ -47,12 +71,14 @@
                     </tr>
                 <?php } ?>
                 </table>
+                <?= $paginator->ellipsisLinks() ?>
             <?php } else { ?>
                 <div class="danger p2">
                     <p>No hay libros que mostrar</p>
                 </div>
             <?php } ?>
             <div class="centered">
+                 <a class="button-success flex1" href="/Libro/create">Nuevo libro</a>
                 <a class="button" onclick="history.back()">Atrás</a>
             </div>
         </main>

@@ -16,11 +16,11 @@
         <?= $template->messages() ?>
 
         <main>
-            <h1><?= APP_NAME?></h1>
             <h2>Lista completa de socios</h2>
 
-            <a class="button" href="/Socio/create">Nuevo socio</a>
-
+            <div class="right">
+                <?= $paginator->stats() ?>
+            </div>
             <?php if($socios){ ?>
                 <table class="table w100">
                     <tr>
@@ -47,12 +47,14 @@
                     </tr>
                 <?php } ?>
                 </table>
+                <?= $paginator->ellipsisLinks() ?>
             <?php } else { ?>
                 <div class="danger p2">
                     <p>No hay socios que mostrar</p>
                 </div>
             <?php } ?>
             <div class="centered">
+                <a class="button-success" href="/Socio/create">Nuevo socio</a>  
                 <a class="button" onclick="history.back()">Atrás</a>
             </div>
         </main>

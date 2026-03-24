@@ -492,11 +492,8 @@ class Base implements TemplateInterface{
     ){
         
         $html = "<search>";
-        
-        $html .= "<p class='info'>Busca con el
-                  <a class='button-light phone100' onclick=\"filtro.classList.toggle('hidden')\">formulario de búsqueda</a></p>";
-        
-        $html .= "<form method='POST' id='filtro' class='right hidden' action='".($action ?? URL::get())."'>";
+                      
+        $html .= "<form method='POST' id='filtro' class='right' action='".($action ?? URL::get())."'>";
        
         $html .= "<label>Buscar</label>";
         $html .= "<input type='search' name='_texto' placeholder='texto'> ";

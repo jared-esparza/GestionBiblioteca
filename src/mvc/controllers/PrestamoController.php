@@ -4,10 +4,15 @@ class PrestamoController extends Controller{
         return $this->list();
     }
 
-    public function list(){
-        $prestamos = V_prestamo::orderBy('id');
+    public function list(int $page = 1){
 
-        return view('prestamo/list', ['prestamos'=>$prestamos]);
+        $limit = RESULTS_PER_PAGE;
+        $total = Prestamo::total();
+        $paginator = new Paginator('/Prestamo/list', $page, $limit, $total);
+
+        $prestamos = V_prestamo::orderBy('devolucion, id', 'ASC', $limit, $paginator->getOffset());
+
+        return view('prestamo/list', ['prestamos'=>$prestamos, 'paginator'=>$paginator]);
     }
 
     // public function show(int $id = 0){

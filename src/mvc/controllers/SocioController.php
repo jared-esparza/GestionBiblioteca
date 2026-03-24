@@ -4,10 +4,14 @@ class SocioController extends Controller{
         return $this->list();
     }
 
-    public function list(){
-        $socios = Socio::orderBy('nombre');
+    public function list(int $page = 1){
+        $limit = RESULTS_PER_PAGE;
+        $total = Socio::total();
+        $paginator = new Paginator('/Socio/list', $page, $limit, $total);
 
-        return view('socio/list', ['socios'=>$socios]);
+        $socios = Socio::orderBy('nombre', "ASC", $limit, $paginator->getOffset());
+
+        return view('socio/list', ['socios'=>$socios, 'paginator'=>$paginator]);
     }
 
     public function show(int $id = 0){

@@ -4,10 +4,16 @@ class LibroController extends Controller{
         return $this->list();
     }
 
-    public function list(){
-        $libros = V_libro::orderBy('titulo');
+    public function list(int $page = 1){
+       
+        $filtro = Filter::apply('libros');
+        $total = $filtro ? V_libro::filteredResults($filtro): V_libro::total();  
+        $limit = RESULTS_PER_PAGE;
+        $paginator = new Paginator('/Libro/list', $page, $limit, $total);
 
-        return view('libro/list', ['libros'=>$libros]);
+        $libros = $filtro ? V_libro::filter($filtro, $limit, $paginator->getOffset()): V_libro::orderBy('titulo', 'DESC', $limit, $paginator->getOffset());
+
+        return view('libro/list', ['libros'=>$libros, 'paginator'=>$paginator, 'filtro'=>$filtro]);
     }
 
     public function show(int $id = 0){

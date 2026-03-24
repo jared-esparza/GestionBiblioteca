@@ -19,8 +19,9 @@
             <h1><?= APP_NAME?></h1>
             <h2>Lista completa de prestamos</h2>
 
-            <a class="button" href="/Prestamo/create">Nuevo prestamo</a>
-
+            <div class="right">
+                <?= $paginator->stats() ?>
+            </div>
             <?php if($prestamos){ ?>
                 <table class="table w100">
                     <tr>
@@ -48,7 +49,7 @@
                         </td>
                         <td><?= $prestamo->limite ?></td>
                         <td><?= $prestamo->devolucion ?></td>
-                        <td class="centrado">
+                        <td>
                         <?php if(!$prestamo->devolucion){ ?>
                             <a class="button-success" href="/Prestamo/returndate/<?= $prestamo->id ?>">Devolucion</a>
                             <a class="button" href="/Prestamo/extend/<?= $prestamo->id ?>">Ampliar</a>
@@ -60,12 +61,14 @@
                     </tr>
                 <?php } ?>
                 </table>
+                <?= $paginator->ellipsisLinks() ?>
             <?php } else { ?>
                 <div class="danger p2">
                     <p>No hay prestamos que mostrar</p>
                 </div>
             <?php } ?>
             <div class="centered">
+                <a class="button-success" href="/Prestamo/create">Nuevo prestamo</a>
                 <a class="button" onclick="history.back()">Atrás</a>
             </div>
         </main>
