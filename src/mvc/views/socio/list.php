@@ -17,7 +17,37 @@
 
         <main>
             <h2>Lista completa de socios</h2>
-
+            <br>
+            <?php 
+                echo $template->filter(
+                    // opciones para el desplegable "buscar en"
+                    [
+                        'DNI' => 'titulo',
+                        'Nombre' => 'nombre',
+                        'Apellidos' => 'apellidos',
+                        'Dirección'=> 'direccion',
+                        'Población'=> 'poblacion',
+                        'Código Postal'=> 'cp',
+                        'Provincia'=> 'provincia',
+                        'Teléfono'=> 'telefono',
+                        'Email'=> 'email'
+                    ],
+                    // opciones para el desplegable "ordenar por"
+                    [
+                        'DNI' => 'titulo',
+                        'Nombre' => 'nombre',
+                        'Apellidos' => 'apellidos',
+                        'Dirección'=> 'direccion',
+                        'Población'=> 'poblacion',
+                        'Código Postal'=> 'cp',
+                        'Provincia'=> 'provincia',
+                        'Teléfono'=> 'telefono',
+                        'Email'=> 'email'
+                    ],
+                    'Nombre', // opción seleccionada por defecto en "buscar en"
+                    'Nombre', // opción seleccionada por defecto en "ordenar por"
+                    $filtro  // filtro aplicado (null si no hay) - viene del controlador
+                );?>
             <div class="right">
                 <?= $paginator->stats() ?>
             </div>

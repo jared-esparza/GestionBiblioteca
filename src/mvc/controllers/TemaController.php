@@ -5,12 +5,15 @@ class TemaController extends Controller{
     }
 
     public function list(int $page = 1){
-        $limit = RESULTS_PER_PAGE;
-        $total = Tema::total();
-        $paginator = new Paginator('/Tema/list', $page, $limit, $total);
-        $temas = Tema::orderBy('tema', 'DESC', $limit, $paginator->getOffset());
 
-        return view('tema/list', ['temas'=>$temas, 'paginator'=>$paginator]);
+        $filtro = Filter::apply('temas');
+        $total = $filtro ? Tema::filteredResults($filtro): Tema::total();
+        $limit = RESULTS_PER_PAGE;
+        $paginator = new Paginator('/Tema/list', $page, $limit, $total);
+
+        $temas = $filtro ? Tema::filter($filtro, $limit, $paginator->getOffset()): Tema::orderBy('tema', 'ASC', $limit, $paginator->getOffset());
+
+        return view('tema/list', ['temas'=>$temas, 'paginator'=>$paginator, 'filtro'=>$filtro]);
     }
 
     public function show(int $id = 0){

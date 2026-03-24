@@ -5,13 +5,15 @@ class SocioController extends Controller{
     }
 
     public function list(int $page = 1){
+
+        $filtro = Filter::apply('socios');
+        $total = $filtro ? Socio::filteredResults($filtro): Socio::total();  
         $limit = RESULTS_PER_PAGE;
-        $total = Socio::total();
         $paginator = new Paginator('/Socio/list', $page, $limit, $total);
 
-        $socios = Socio::orderBy('nombre', "ASC", $limit, $paginator->getOffset());
+        $socios = $filtro ? Socio::filter($filtro, $limit, $paginator->getOffset()): Socio::orderBy('nombre', 'ASC', $limit, $paginator->getOffset());
 
-        return view('socio/list', ['socios'=>$socios, 'paginator'=>$paginator]);
+        return view('socio/list', ['socios'=>$socios, 'paginator'=>$paginator, 'filtro'=>$filtro]);
     }
 
     public function show(int $id = 0){

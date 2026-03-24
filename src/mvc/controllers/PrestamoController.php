@@ -6,13 +6,14 @@ class PrestamoController extends Controller{
 
     public function list(int $page = 1){
 
+        $filtro = Filter::apply('prestamos');
+        $total = $filtro ? V_prestamo::filteredResults($filtro): V_prestamo::total();  
         $limit = RESULTS_PER_PAGE;
-        $total = Prestamo::total();
         $paginator = new Paginator('/Prestamo/list', $page, $limit, $total);
 
-        $prestamos = V_prestamo::orderBy('devolucion, id', 'ASC', $limit, $paginator->getOffset());
+        $prestamos = $filtro ? V_prestamo::filter($filtro, $limit, $paginator->getOffset()): V_prestamo::orderBy('devolucion', 'ASC', $limit, $paginator->getOffset());
 
-        return view('prestamo/list', ['prestamos'=>$prestamos, 'paginator'=>$paginator]);
+        return view('prestamo/list', ['prestamos'=>$prestamos, 'paginator'=>$paginator, 'filtro'=>$filtro]);
     }
 
     // public function show(int $id = 0){

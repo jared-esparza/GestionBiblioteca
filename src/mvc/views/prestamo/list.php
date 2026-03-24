@@ -16,9 +16,27 @@
         <?= $template->messages() ?>
 
         <main>
-            <h1><?= APP_NAME?></h1>
             <h2>Lista completa de prestamos</h2>
-
+            <br>
+            <?php 
+                echo $template->filter(
+                    // opciones para el desplegable "buscar en"
+                    [
+                        'Título' => 'titulo',
+                        'Nombre' => 'nombre',
+                        'Apellidos' => 'apellidos',
+                    ],
+                    // opciones para el desplegable "ordenar por"
+                    [
+                        'Fecha' => 'prestamo',
+                        'Límite' => 'limite',
+                        'Devolución' => 'devolucion',
+                        'Título' => 'titulo'
+                    ],
+                    'Tiítulo', // opción seleccionada por defecto en "buscar en"
+                    'Fecha', // opción seleccionada por defecto en "ordenar por"
+                    $filtro  // filtro aplicado (null si no hay) - viene del controlador
+                );?>
             <div class="right">
                 <?= $paginator->stats() ?>
             </div>

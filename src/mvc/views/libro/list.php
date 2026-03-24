@@ -20,8 +20,6 @@
             <h2>Lista completa de libros</h2>
             <br>
             <?php 
-        			
-                // coloca el formulario para poner o quitar filtro
                 echo $template->filter(
                     // opciones para el desplegable "buscar en"
                     [
@@ -30,7 +28,6 @@
                         'Autor' => 'autor',
                         'ISBN' => 'isbn'     
                     ],
-                    
                     // opciones para el desplegable "ordenar por"
                     [
                         'Título' => 'titulo',

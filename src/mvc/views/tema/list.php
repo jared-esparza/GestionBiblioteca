@@ -18,6 +18,23 @@
         <main>
             <h1><?= APP_NAME?></h1>
             <h2>Lista completa de temas</h2>
+            <br>
+            <?php 
+                echo $template->filter(
+                    // opciones para el desplegable "buscar en"
+                    [
+                        'Tema' => 'tema',
+                        'Descripción' => 'descripcion',
+                    ],
+                    // opciones para el desplegable "ordenar por"
+                    [
+                        'Tema' => 'tema',
+                        'Descripción' => 'descripcion',
+                    ],
+                    'Tema', // opción seleccionada por defecto en "buscar en"
+                    'Tema', // opción seleccionada por defecto en "ordenar por"
+                    $filtro  // filtro aplicado (null si no hay) - viene del controlador
+                );?>
 
             <div class="right">
                 <?= $paginator->stats() ?>
