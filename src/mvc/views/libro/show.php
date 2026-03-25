@@ -7,6 +7,8 @@
         <meta name="description" content="">
         <meta name="viewport" content="width=device-width, initial-scale=1">
         <?= $template->css() ?>
+        <script src="/js/Modal.js"></script>
+
     </head>
     <body>
         
@@ -19,18 +21,23 @@
         <?= $template->messages() ?>
 
         <main>
-            <h1><?= APP_NAME?></h1>
-            <section>
-            <h2><?= $libro->titulo?></h2>
-            <p><b>ISBN:</b> <?= $libro->isbn?></p>
-            <p><b>Titulo:</b> <?= $libro->titulo?></p>
-            <p><b>Editorial:</b> <?= $libro->editorial?></p>
-            <p><b>Autor:</b> <?= $libro->autor?></p>
-            <p><b>Idioma:</b> <?= $libro->idioma?></p>
-            <p><b>Edición:</b> <?= $libro->edicion?></p>
-            <p><b>Edad recomendada:</b> <?= $libro->edadrecomendada ?? ' -- '?></p>
-            <p><b>Páginas:</b> <?= $libro->paginas ?? ' -- '?></p>
-            <p><b>Características:</b> <?= $libro->caracterisitcas ?? ' -- '?></p>
+            <section class="flex-container gap2" id="detalles">
+                <div class="flex2">
+                    <h2><?= $libro->titulo?></h2>
+                    <p><b>ISBN:</b> <?= $libro->isbn?></p>
+                    <p><b>Titulo:</b> <?= $libro->titulo?></p>
+                    <p><b>Editorial:</b> <?= $libro->editorial?></p>
+                    <p><b>Autor:</b> <?= $libro->autor?></p>
+                    <p><b>Idioma:</b> <?= $libro->idioma?></p>
+                    <p><b>Edición:</b> <?= $libro->edicion?></p>
+                    <p><b>Edad recomendada:</b> <?= $libro->edadrecomendada ?? ' -- '?></p>
+                    <p><b>Páginas:</b> <?= $libro->paginas ?? ' -- '?></p>
+                    <p><b>Características:</b> <?= $libro->caracterisitcas ?? ' -- '?></p>
+                </div>
+                <figure class="flex1 centrado p2">
+                    <img src="<?= BOOK_IMAGE_FOLDER . '/' .($libro->portada ?? DEFAULT_BOOK_IMAGE) ?>" class="cover with-modal">
+                    <figcaption>Portada de <?= "$libro->titulo, de $libro->autor" ?></figcaption>
+                </figure>
             </section>
             <section>
                 <h2>Sinopsis</h2>

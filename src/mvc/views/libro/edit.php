@@ -7,6 +7,7 @@
         <meta name="description" content="">
         <meta name="viewport" content="width=device-width, initial-scale=1">
         <?= $template->css() ?>
+        <script src="/js/Preview.js"></script>
     </head>
     <body>
         
@@ -23,7 +24,7 @@
         
             <h2>Editar el libro <?= $libro->titulo ?></h2>
 
-            <form action="/Libro/update" enctype="multipart/form-data" method="POST">
+            <form action="/Libro/update" enctype="multipart/form-data" method="POST" class="flex2 no-border">
                 <div class="flex2">
                     <input type="hidden" value="<?= $libro->id ?>" name="id">
                     <label>ISBN:</label>
@@ -37,6 +38,9 @@
                     <br>
                     <label>Autor:</label>
                     <input type="text" name="autor" value="<?= old('autor', $libro->autor)?>">
+                    <br>
+                    <label>Portada:</label>
+                    <input type="file" name="portada" id="file-with-preview" accept="image/*">
                     <br>
                     <label>Idioma:</label>
                     <input type="text" name="idioma" value="<?= old('idioma', $libro->idioma)?>">
@@ -64,37 +68,48 @@
                     <input type="reset" class="button" value="Reset">
                 </div>
             </form>
-                    <section>
-                        <script>
-                            function confirmar(id){
-                                if(confirm('¿Seguro que desea eliminar?')){
-                                    location.href='/Ejemplar/destroy/'+id;
-                                }
-                            }
-                        </script>
-                        <h2>Ejemplares de este libro</h2>
-                        <a class="button" href="/Ejemplar/create/<?= $libro->id ?>">Nuevo ejemplar</a>
-                        <table class="table w100">
-                        <tr>
-                            <th>ID</th>
-                            <th>Estado</th>
-                            <th>Precio</th>
-                            <th>Acciones</th>
-                        </tr>
-                    <?php foreach($ejemplares as $ejemplar){?>
-                            <tr>
-                                <td><?=$ejemplar->id?></td>
-                                <td><?=$ejemplar->estado?></td>
-                                <td><?=$ejemplar->precio . ' €'?></td>
-                                <td>
-                                    <a class="button" href="/Ejemplar/edit/<?= $ejemplar->id ?>">Editar</a>
-                                    <?php if(!$ejemplar->hasAny('Prestamo')){ ?>
-                                        <a class="button" onclick="confirmar(<?= $ejemplar->id?>)">Borrar</a>
-                                    <?php } ?>
-                                </td>
-                            </tr>
-                    <?php } ?>
-                    </table>
+            <figure class="flex1 centrado">
+                <img src="<?= BOOK_IMAGE_FOLDER . '/' .($libro->portada ?? DEFAULT_BOOK_IMAGE) ?>" class="cover" id="preview-image">
+                <figcaption>Portada de <?= $libro->titulo ?></figcaption>
+            <?php if($libro->portada){ ?>
+                <form action="/Libro/dropcover" method="POST" class="no-border">
+                    <input type="hidden" name="id" value="<?= $libro->id ?>">
+                    <input type="submit" value="Eliminar portada" name="borrar" class="button-danger">
+                </form>
+            <?php } ?>
+                
+            </figure>
+            <section>
+                <script>
+                    function confirmar(id){
+                        if(confirm('¿Seguro que desea eliminar?')){
+                            location.href='/Ejemplar/destroy/'+id;
+                        }
+                    }
+                </script>
+                <h2>Ejemplares de este libro</h2>
+                <a class="button" href="/Ejemplar/create/<?= $libro->id ?>">Nuevo ejemplar</a>
+                <table class="table w100">
+                    <tr>
+                        <th>ID</th>
+                        <th>Estado</th>
+                        <th>Precio</th>
+                        <th>Acciones</th>
+                    </tr>
+            <?php foreach($ejemplares as $ejemplar){?>
+                    <tr>
+                        <td><?=$ejemplar->id?></td>
+                        <td><?=$ejemplar->estado?></td>
+                        <td><?=$ejemplar->precio . ' €'?></td>
+                        <td>
+                            <a class="button" href="/Ejemplar/edit/<?= $ejemplar->id ?>">Editar</a>
+                            <?php if(!$ejemplar->hasAny('Prestamo')){ ?>
+                                <a class="button" onclick="confirmar(<?= $ejemplar->id?>)">Borrar</a>
+                            <?php } ?>
+                        </td>
+                    </tr>
+                <?php } ?>
+                </table>
                 </section>
                 <section>
                     <h2>Temas de este libro</h2>

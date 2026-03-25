@@ -7,6 +7,7 @@
         <meta name="description" content="">
         <meta name="viewport" content="width=device-width, initial-scale=1">
         <?= $template->css() ?>
+        <script src="/js/Preview.js"></script>
     </head>
     <body>
         
@@ -36,6 +37,9 @@
                     <br>
                     <label>Autor:</label>
                     <input type="text" name="autor" value="<?= old('autor')?>">
+                    <br>
+                    <label>Portada:</label>
+                    <input type="file" name="portada" id="file-with-preview" accept="image/*">
                     <br>
                     <label>Idioma:</label>
                     <select name="idioma">
@@ -74,6 +78,10 @@
                     <input type="submit" class="button" name="guardar" value="Guardar">
                     <input type="reset" class="button" value="Reset">
                 </div>
+                <figure class="flex1 centrado">
+                    <img src="<?= BOOK_IMAGE_FOLDER . '/' .($libro->portada ?? DEFAULT_BOOK_IMAGE) ?>" class="cover" id="preview-image">
+                    <figcaption>Previsualización de la portada</figcaption>
+                </figure>
             </form>
             <div class="centrado my2">
                 <a class="button" onclick="history.back()">Atras</a>

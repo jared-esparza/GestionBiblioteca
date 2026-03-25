@@ -288,7 +288,10 @@ define('RESULTS_PER_PAGE', 10);  // Número de resultados por página
 define('UPLOAD_FOLDER', '../storage'); 
 
 // tamaño máximo para los ficheros subidos en bytes (0 sin límite)
-define('UPLOAD_MAX_SIZE', 0);          
+define('UPLOAD_MAX_SIZE', 0);
+
+define('BOOK_IMAGE_FOLDER', '/images/books');
+define('DEFAULT_BOOK_IMAGE', 'default_cover.png');
 
 
 

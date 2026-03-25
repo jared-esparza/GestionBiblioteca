@@ -45,6 +45,7 @@
             <?php if($libros){ ?>
                 <table class="table w100">
                     <tr>
+                        <th>Portada</th>
                         <th>ISBN</th>
                         <th>Titulo</th>
                         <th>Autor</th>
@@ -53,6 +54,11 @@
                     </tr>
                 <?php foreach($libros as $libro){ ?>
                     <tr>
+                        <td class="centrado">
+                            <a href="/Libro/show/<?= $libro->id ?>">
+                                <img src="<?= BOOK_IMAGE_FOLDER . '/' .($libro->portada ?? DEFAULT_BOOK_IMAGE) ?>" class="table-image">
+                            </a>
+                        </td>
                         <td><?= $libro->isbn ?></td>
                         <td><?= $libro->titulo ?></td>
                         <td><?= $libro->autor ?></td>

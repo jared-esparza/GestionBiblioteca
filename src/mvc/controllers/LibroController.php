@@ -83,6 +83,12 @@ class LibroController extends Controller{
             if(request()->post("idtema")){
                 $libro->addtema(intval(request()->post("idtema")));
             }
+
+            $file = request()->file('portada', 8000000, ['image/png', 'image/jpeg', 'image/gif', 'image/webp']);
+            if($file){
+                $libro->portada = $file->store('../public/'.BOOK_IMAGE_FOLDER, 'book_');
+                $libro->update();
+            }
             Session::success("Guardado del libro $libro->titulo correcto.");
             return redirect("/libro/show/$libro->id");
         }catch(SQLException $e){
@@ -96,6 +102,12 @@ class LibroController extends Controller{
                 throw new SQLException($e->getMessage());
             } 
             return redirect("/libro/create");
+        }catch(UploadException $e){
+            Session::warning('El libro se guardó pero la imagen no se ha subido correctamente.');
+            if(DEBUG){
+                throw new UploadException($e->getMessage());
+            }
+            return redirect("/Libro/edit/$libro->id");
         }
     }
 
@@ -113,6 +125,15 @@ class LibroController extends Controller{
         $id = intval(request()->post('id'));
         try{
             $libro = Libro::create(request()->posts(), $id);
+            $libro = Libro::findOrFail($id, 'No se ha encontrado el libro');
+            $file = request()->file('portada', 8000000, ['image/png', 'image/jpeg', 'image/gif', 'image/webp']);
+            if($file){
+                if($libro->portada){
+                    File::remove('../public/' . BOOK_IMAGE_FOLDER . '/' . $libro->portada);
+                }
+                $libro->portada = $file->store('../public/'.BOOK_IMAGE_FOLDER, 'book_');
+                $libro->update();
+            }
             Session::success("Actualización del libro $libro->titulo correcta.");
             return redirect("/libro/edit/$id");
         }catch(SQLException $e){
@@ -126,6 +147,38 @@ class LibroController extends Controller{
                 throw new SQLException($e->getMessage());
             } 
             return redirect("/libro/edit/$id");
+        }catch(UploadException $e){
+            Session::warning('Cambios guardados pero no se gaurdó la portada.');
+            if(DEBUG){
+                throw new UploadException($e->getMessage());
+            }
+            return redirect("/Libro/edit/$libro->id");
+        }catch(Exception $e){
+            throw new Exception($e->getMessage());
+        }
+    }
+
+    public function dropcover(){
+        if(!request()->has("borrar")){
+            throw new FormException("No se ha recibido el formulario.");
+        }
+        $id = request()->post("id");
+        $libro = Libro::findOrFail($id, "No se ha encontrado el libro.");
+
+        $tmp = $libro->portada;
+        $libro->portada = NULL;
+
+        try{
+            $libro->update();
+            File::remove('../public/' . BOOK_IMAGE_FOLDER . '/' . $tmp, true);
+            Session::success("Borrado de la portada de libro $libro->titulo correcta.");
+            return redirect("/libro/edit/$id");
+        }catch(FileException $e){
+            Session::warning('No se pudo eliminar la portada.');
+            if(DEBUG){
+                throw new UploadException($e->getMessage());
+            }
+            return redirect("/Libro/edit/$libro->id");
         }
     }
 
@@ -145,6 +198,9 @@ class LibroController extends Controller{
         }
         try{
             $libro->deleteObject();
+             if($libro->portada){
+                File::remove('../public/' . BOOK_IMAGE_FOLDER . '/' . $libro->portada);
+            }
             Session::success("Se ha borrado el libro $libro->titulo.");
             return redirect("/libro/list");
         }catch(SQLException $e){
@@ -153,6 +209,12 @@ class LibroController extends Controller{
                 throw new SQLException($e->getMessage());
             }
             return redirect("/libro/delete/$id");
+        }catch(FileException $e){
+            Session::warning('No se pudo eliminar la portada.');
+            if(DEBUG){
+                throw new UploadException($e->getMessage());
+            }
+            return redirect("/Libro");
         }
     
     }
