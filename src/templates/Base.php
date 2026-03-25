@@ -225,7 +225,7 @@ class Base implements TemplateInterface{
                 <div class='flex-container gap1'>
                     <figure class='flex1 perfect-centered'>
                         <a href='/'>
-                            <img alt='FastLight Logo' src='/images/logos/fastlight.png'>
+                            <img alt='FastLight Logo' src='/images/logos/bibliocifo.png'>
                         </a>
                     </figure>
                     <hgroup class='flex7'>

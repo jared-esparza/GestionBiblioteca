@@ -19,7 +19,8 @@ class WelcomeController extends Controller{
      * 
      * */
     public function index():ViewResponse{
-        return view('welcome');
+        $libros = Libro::orderBy("id", "DESC", 5);
+        return view('welcome', ['libros'=>$libros]);
     }  
 }
 
