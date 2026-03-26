@@ -1,7 +1,7 @@
 <?php
 
 /** config.php
- * 
+ *
  * Parámetros de configuración del proyecto.
  * Secciones:
  * - Autoload
@@ -17,9 +17,9 @@
  * - Herramientas de depuración (web)
  * - Tests
  * - API
- * 
+ *
  * Todas las directivas se encuentran documentadas en el mismo fichero config.php.
- * 
+ *
  * Última revisión: 02/10/25
  * @author Robert Sallent <robertsallent@gmail.com>
  * @since v0.1.0
@@ -43,13 +43,13 @@
  * @since v2.1.1 añadida la constante APP_PASSWORD para definir un password para las herramientas del framework que lo necesiten
  * @since v2.2.0 añadidas HTML_CHARSET, APP_AUTHOR, APP_URL, APP_LOGO, LOGIN_FIELD y ALLOW_OTHER_LOGIN_FIELD
  */
-   
+
 
 /* -------------------------------------------------------------
  * AUTOLOAD
  * -------------------------------------------------------------*/
 
-// listado de directorios (classmap) para que el el autoload busque clases (no PSR-4) 
+// listado de directorios (classmap) para que el el autoload busque clases (no PSR-4)
 // listado de directorios (mapa de clases) para que el el autoload busque las clases a cargar (no PSR-4)
 define('AUTOLOAD_DIRECTORIES',  [
     '../app/core',          // core
@@ -62,18 +62,18 @@ define('AUTOLOAD_DIRECTORIES',  [
     '../app/interfaces',    // interfaces
     '../app/exceptions'     // excepciones
 ]);
- 
-    
-    
+
+
+
 /* -------------------------------------------------------------
  * APLICACIÓN
  * -------------------------------------------------------------*/
 
 define('APP_NAME', 'BiblioCIFO'); // Título de la aplicación.
-define('APP_TYPE', 'WEB');       // Tipo de aplicación: WEB o API. 
+define('APP_TYPE', 'WEB');       // Tipo de aplicación: WEB o API.
 
 // para las etiquetas META de autor (en el template)
-define('APP_AUTHOR', 'Jared Esparza');  
+define('APP_AUTHOR', 'Jared Esparza');
 
 // para las etiquetas META de redes sociales (en el template)
 define('APP_URL', 'https://fastlight.org');
@@ -92,7 +92,7 @@ define('SHOW_VERSION', true);    // muestra la versión de la app en el footer (
 // Controlador y método por defecto (solamente para APP_TYPE WEB).
 define('DEFAULT_CONTROLLER', 'WelcomeController');
 define('DEFAULT_METHOD', 'index');
-   
+
 // ¿Deben las cadenas vacías ser convertidas a NULL?
 // se aplica al recuperar los datos de la petición mediante el objeto Request,
 // tanto si llegan por GET, POST, COOKIE...
@@ -128,7 +128,7 @@ define('DEFAULT_EMAIL_NAME', 'No-reply test');
 
 // versión de PHP necesaria para ejecutar el framework o aplicación
 // podría funcionar en versiones anteriores pero no se garantiza que lo haga
-define('MIN_PHP_VERSION', '8.2.0');  
+define('MIN_PHP_VERSION', '8.2.0');
 
 // comprobación de la versión de PHP del servidor
 // si está a true impide que se ejecute la aplicación en servidores con versiones
@@ -174,7 +174,8 @@ define('USER_ROLES', [
     'API'           => 'ROLE_API',
     'Estudiante'    => 'ROLE_STUDENT',
     'Debug'         => 'ROLE_DEBUG',
-    'Bloqueado'     => 'ROLE_BLOCKED'
+    'Bloqueado'     => 'ROLE_BLOCKED',
+    'Bibliotecario' => 'ROLE_LIBRARIAN',
 ]);
 
 
@@ -185,7 +186,7 @@ define('ADMIN_PANEL_ROLES', ['ROLE_ADMIN', 'ROLE_TEST']);
 define('ERROR_ROLES', ['ROLE_ADMIN']);
 
 // roles que tienen autorización para ver y ejecutar test
-define('TEST_ROLES', ['ROLE_ADMIN', 'ROLE_TEST']); 
+define('TEST_ROLES', ['ROLE_ADMIN', 'ROLE_TEST']);
 
 // roles que tienen autorización para ver las estadísticas de visitas
 define('STATS_ROLES', ['ROLE_ADMIN', 'ROLE_TEST']);
@@ -223,7 +224,7 @@ define('USER_IMAGE_MAX_SIZE', 0);
 define('LOGIN_FIELD', 'email');
 
 // si queremos usar otro campo que no sea email, phone o both, hay que indicarlo expresamente
-define('ALLOW_OTHER_LOGIN_FIELD', false); 
+define('ALLOW_OTHER_LOGIN_FIELD', false);
 
 // redirección tras el Login correcto del usuario, no aplica si hay una operación pendiente
 // (por ejemplo, si hace login tras intentar acceder a una página que requiere estar autenticado)
@@ -243,13 +244,13 @@ define('DB_LOGIN_ERRORS', false);                  // guardar errores de login e
  * -------------------------------------------------------------*/
 
 // nombre de la sesión (y de la cookie de sesión)
-define('SESSION_NAME', 'FL2SESSID');   
+define('SESSION_NAME', 'FL2SESSID');
 
 // tiempo (en segundos) antes de marcar los datos de sesión como basura
-define('SESSION_TIME', 1440);           
+define('SESSION_TIME', 1440);
 
 // tiempo de expiración de la cookie de sesión (0 cuando se reinicie el navegador)
-define('SESSION_COOKIE_EXPIRE', 0); 
+define('SESSION_COOKIE_EXPIRE', 0);
 
 // la cookie de sesión solamente se enviará si la conexión es segura (HTTPS)
 // el valor "true" nos puede dar problemas en localhost si no usamos HTTPS
@@ -266,9 +267,9 @@ define('SESSION_COOKIE_HTTPONLY', true);
  * -------------------------------------------------------------*/
 
 // Carpeta para las vistas.
-define('VIEWS_FOLDER', '../mvc/views');     
+define('VIEWS_FOLDER', '../mvc/views');
 
-// Template a usar en las vistas 
+// Template a usar en las vistas
 // Las plantillas que se incluyen son: Base, Dark y Retro.
 // Se pueden crear nuevas en la carpeta templates.
 define('TEMPLATE', 'Base');
@@ -288,7 +289,7 @@ define('RESULTS_PER_PAGE', 10);  // Número de resultados por página
  * -------------------------------------------------------------*/
 
 // carpeta por defecto para la subida de ficheros
-define('UPLOAD_FOLDER', '../storage'); 
+define('UPLOAD_FOLDER', '../storage');
 
 // tamaño máximo para los ficheros subidos en bytes (0 sin límite)
 define('UPLOAD_MAX_SIZE', 0);
@@ -307,26 +308,26 @@ define('ACCEPT_COOKIES', true);    // habilita el mensaje de "aceptar cookies"
 // mensaje que aparece en el formulario de "aceptar cookies"
 // los saltos de línea en el mensaje se convertirán en cambio de párrafo
 define(
-    'ACCEPT_COOKIES_MESSAGE', 
-    "Para visitar este sitio debes aceptar las cookies. 
+    'ACCEPT_COOKIES_MESSAGE',
+    "Para visitar este sitio debes aceptar las cookies.
      Este cuadro de diálogo se puede configurar para que aparezca o no en el fichero config.php."
 );
 
 // nombre de la cookie que se guardará para saber que nos han aceptado las cookies
-define('ACCEPT_COOKIES_NAME', 'accept-cookies');    
+define('ACCEPT_COOKIES_NAME', 'accept-cookies');
 
 // tiempo que durará la cookie de "aceptar cookies" en segundos.
 // por defecto una semana, 0 para que tenga duración de sesión
-define('ACCEPT_COOKIES_EXPIRATION', time()+604800); 
+define('ACCEPT_COOKIES_EXPIRATION', time()+604800);
 
 
 
 /* -------------------------------------------------------------
  * HERRAMIENTAS DE DEPURACIÓN (PARA APP_TYPE WEB)
  * -------------------------------------------------------------*/
-    
+
 define('DISPLAY_ERRORS', true); // Muestra errores en pantalla. En producción debe estar a false.
-define('DEBUG', true);          // Activa el modo debug. En producción debe estar a false.  
+define('DEBUG', true);          // Activa el modo debug. En producción debe estar a false.
 
 // Detalles que queremos mostrar en modo debug en la página de error
 // OPCIONES: user, trace, request, session
@@ -334,7 +335,7 @@ define('DEBUG_INFO', [
     'user',     // Muestra información del usuario y cliente.
     'trace',    // Muestra traza del error.
     'request',  // Muestra información de la Request y datos recibidos.
-    'session',  // Muestra las variables de sesión.   
+    'session',  // Muestra las variables de sesión.
 ]);
 
 define('LOG_ERRORS', true);                        // guardar errores en fichero de log.
@@ -360,7 +361,7 @@ define('USE_CUSTOM_ERROR_VIEWS', true);
 define('TEST_ENABLED', true);
 
 // Carpeta para los test.
-define('TEST_FOLDER', '../test');  
+define('TEST_FOLDER', '../test');
 
 
 
@@ -395,5 +396,5 @@ define('ALLOW_CREDENTIALS', 'true');
 
 // Método de autenticación para las peticiones a la API.
 // Puede ser COOKIE (implementado) o KEY (no implementado aún)
-define('API_AUTHENTICATION', 'COOKIE'); 
+define('API_AUTHENTICATION', 'COOKIE');
 
