@@ -6,21 +6,21 @@
  * fichero de configuración config.php.
  *
  * Última revisión: 09/03/2025
- * 
+ *
  * @author Robert Sallent <robert@fastlight.org>
  */
 
 class WelcomeController extends Controller{
-    
-    /** 
-     * Carga la vista de portada. 
-     * 
+
+    /**
+     * Carga la vista de portada.
+     *
      * @return ViewResponse
-     * 
+     *
      * */
     public function index():ViewResponse{
         $libros = Libro::orderBy("id", "DESC", 5);
         return view('welcome', ['libros'=>$libros]);
-    }  
+    }
 }
 

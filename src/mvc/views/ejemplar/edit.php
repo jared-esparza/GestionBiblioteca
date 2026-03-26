@@ -9,7 +9,7 @@
         <?= $template->css() ?>
     </head>
     <body>
-        
+
         <?= $template->header('Editar Ejemplar') ?>
         <?= $template->menu() ?>
         <?= $template->breadCrumbs([
@@ -20,7 +20,7 @@
 
         <main>
             <h1><?= APP_NAME?></h1>
-        
+
             <h2>Editar el ejemplar <?= $ejemplar->nombre ?></h2>
 
             <form action="/Ejemplar/update" enctype="multipart/form-data" method="POST">

@@ -9,7 +9,7 @@
         <?= $template->css() ?>
     </head>
     <body>
-        
+
         <?= $template->header('Lista de temas') ?>
         <?= $template->menu() ?>
         <?= $template->breadCrumbs(['Temas'=>null]) ?>
@@ -19,7 +19,7 @@
             <h1><?= APP_NAME?></h1>
             <h2>Lista completa de temas</h2>
             <br>
-            <?php 
+            <?php
                 echo $template->filter(
                     // opciones para el desplegable "buscar en"
                     [

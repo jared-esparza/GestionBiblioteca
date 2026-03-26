@@ -10,7 +10,7 @@
         <script src="/js/Preview.js"></script>
     </head>
     <body>
-        
+
         <?= $template->header('Editar libro') ?>
         <?= $template->menu() ?>
         <?= $template->breadCrumbs([
@@ -21,7 +21,7 @@
 
         <main>
             <h1><?= APP_NAME?></h1>
-        
+
             <h2>Editar el libro <?= $libro->titulo ?></h2>
 
             <form action="/Libro/update" enctype="multipart/form-data" method="POST" class="flex2 no-border">
@@ -77,7 +77,7 @@
                     <input type="submit" value="Eliminar portada" name="borrar" class="button-danger">
                 </form>
             <?php } ?>
-                
+
             </figure>
             <section>
                 <script>

@@ -9,7 +9,7 @@
         <?= $template->css() ?>
     </head>
     <body>
-        
+
         <?= $template->header('Borrar libro') ?>
         <?= $template->menu() ?>
         <?= $template->breadCrumbs([
@@ -20,7 +20,7 @@
 
         <main>
             <h1><?= APP_NAME?></h1>
-        
+
             <h2>Borrar libro</h2>
 
             <form action="/Libro/destroy" enctype="multipart/form-data" method="POST" class="p2 m2">

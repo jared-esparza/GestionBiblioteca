@@ -9,7 +9,7 @@
         <?= $template->css() ?>
     </head>
     <body>
-        
+
         <?= $template->header('Incidencia Prestamo') ?>
         <?= $template->menu() ?>
         <?= $template->breadCrumbs([
@@ -20,7 +20,7 @@
 
         <main>
             <h1><?= APP_NAME?></h1>
-        
+
             <h2>Añadir incidencia al prestamo <?= $prestamo->id ?></h2>
 
             <form action="/Prestamo/update" enctype="multipart/form-data" method="POST">

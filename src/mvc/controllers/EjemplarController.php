@@ -23,7 +23,7 @@ class EjemplarController extends Controller{
             Session::error($mensaje);
             if(DEBUG){
                 throw new SQLException($e->getMessage());
-            } 
+            }
             return redirect("/ejemplar/create");
         }
     }
@@ -46,13 +46,13 @@ class EjemplarController extends Controller{
             Session::error($mensaje);
             if(DEBUG){
                 throw new SQLException($e->getMessage());
-            } 
+            }
             return redirect("/ejemplar/edit/$id");
         }
     }
 
     public function destroy(int $id = 0){
-     
+
         $ejemplar = Ejemplar::findOrFail($id, "No se encontró el ejemplar");
 
         if ($ejemplar->hasAny("Prestamo")){
@@ -69,7 +69,5 @@ class EjemplarController extends Controller{
             }
             return redirect("/libro/edit/$ejemplar->idlibro");
         }
-    
     }
-
 }

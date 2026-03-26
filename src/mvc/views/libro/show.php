@@ -11,7 +11,7 @@
 
     </head>
     <body>
-        
+
         <?= $template->header('Detalle de ' . $libro->titulo) ?>
         <?= $template->menu() ?>
         <?= $template->breadCrumbs([
@@ -70,7 +70,7 @@
                     <th>Tema</th>
                 </tr>
             <?php
-                
+
                 foreach($temas as $tema){?>
                 <tr>
                     <td><?=$tema->id?></td>

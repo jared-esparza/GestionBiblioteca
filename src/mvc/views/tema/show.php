@@ -9,7 +9,7 @@
         <?= $template->css() ?>
     </head>
     <body>
-        
+
         <?= $template->header('Detalles de tema') ?>
         <?= $template->menu() ?>
         <?= $template->breadCrumbs([

@@ -9,7 +9,7 @@
         <?= $template->css() ?>
     </head>
     <body>
-        
+
         <?= $template->header('Ampliar Prestamo') ?>
         <?= $template->menu() ?>
         <?= $template->breadCrumbs([
@@ -20,14 +20,14 @@
 
         <main>
             <h1><?= APP_NAME?></h1>
-        
+
             <h2>Amplir el prestamo <?= $prestamo->id ?></h2>
 
             <form action="/Prestamo/update" enctype="multipart/form-data" method="POST">
                 <div class="flex2">
                     <input type="hidden" value="<?= $prestamo->id ?>" name="id">
                     <label>Nueva fecha limite:</label>
-                    <input type="date" name="limite"  
+                    <input type="date" name="limite"
                         value="<?= old('limite', date('Y-m-d', strtotime($prestamo->limite . ' +1 week'))) ?>">
                 </div>
                 <div class="centered mt2">

@@ -7,7 +7,7 @@ class SocioController extends Controller{
     public function list(int $page = 1){
 
         $filtro = Filter::apply('socios');
-        $total = $filtro ? Socio::filteredResults($filtro): Socio::total();  
+        $total = $filtro ? Socio::filteredResults($filtro): Socio::total();
         $limit = RESULTS_PER_PAGE;
         $paginator = new Paginator('/Socio/list', $page, $limit, $total);
 
@@ -43,7 +43,7 @@ class SocioController extends Controller{
             Session::error($mensaje);
             if(DEBUG){
                 throw new SQLException($e->getMessage());
-            } 
+            }
             return redirect("/socio/create");
         }
     }
@@ -71,7 +71,7 @@ class SocioController extends Controller{
             Session::error($mensaje);
             if(DEBUG){
                 throw new SQLException($e->getMessage());
-            } 
+            }
             return redirect("/socio/edit/$id");
         }
     }
@@ -98,7 +98,7 @@ class SocioController extends Controller{
             }
             return redirect("/socio/delete/$id");
         }
-    
+
     }
 
 }

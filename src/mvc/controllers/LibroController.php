@@ -5,9 +5,9 @@ class LibroController extends Controller{
     }
 
     public function list(int $page = 1){
-       
+
         $filtro = Filter::apply('libros');
-        $total = $filtro ? V_libro::filteredResults($filtro): V_libro::total();  
+        $total = $filtro ? V_libro::filteredResults($filtro): V_libro::total();
         $limit = RESULTS_PER_PAGE;
         $paginator = new Paginator('/Libro/list', $page, $limit, $total);
 
@@ -69,7 +69,7 @@ class LibroController extends Controller{
     //         Session::error($mensaje);
     //         if(DEBUG){
     //             throw new SQLException($e->getMessage());
-    //         } 
+    //         }
     //         return redirect("/libro/create");
     //     }
     // }
@@ -100,7 +100,7 @@ class LibroController extends Controller{
             Session::error($mensaje);
             if(DEBUG){
                 throw new SQLException($e->getMessage());
-            } 
+            }
             return redirect("/libro/create");
         }catch(UploadException $e){
             Session::warning('El libro se guardó pero la imagen no se ha subido correctamente.');
@@ -145,7 +145,7 @@ class LibroController extends Controller{
             Session::error($mensaje);
             if(DEBUG){
                 throw new SQLException($e->getMessage());
-            } 
+            }
             return redirect("/libro/edit/$id");
         }catch(UploadException $e){
             Session::warning('Cambios guardados pero no se gaurdó la portada.');
@@ -216,7 +216,7 @@ class LibroController extends Controller{
             }
             return redirect("/Libro");
         }
-    
+
     }
 
     public function addtema(){

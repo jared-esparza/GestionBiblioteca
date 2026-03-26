@@ -9,7 +9,7 @@
         <?= $template->css() ?>
     </head>
     <body>
-        
+
         <?= $template->header('Lista de socios') ?>
         <?= $template->menu() ?>
         <?= $template->breadCrumbs(['Socios'=>null]) ?>
@@ -18,7 +18,7 @@
         <main>
             <h2>Lista completa de socios</h2>
             <br>
-            <?php 
+            <?php
                 echo $template->filter(
                     // opciones para el desplegable "buscar en"
                     [
@@ -84,7 +84,7 @@
                 </div>
             <?php } ?>
             <div class="centered">
-                <a class="button-success" href="/Socio/create">Nuevo socio</a>  
+                <a class="button-success" href="/Socio/create">Nuevo socio</a>
                 <a class="button" onclick="history.back()">Atrás</a>
             </div>
         </main>

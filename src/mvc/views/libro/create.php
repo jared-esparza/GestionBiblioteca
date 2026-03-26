@@ -10,7 +10,7 @@
         <script src="/js/Preview.js"></script>
     </head>
     <body>
-        
+
         <?= $template->header('Borrar libro') ?>
         <?= $template->menu() ?>
         <?= $template->breadCrumbs([
@@ -21,7 +21,7 @@
 
         <main>
             <h1><?= APP_NAME?></h1>
-        
+
             <h2>Nuevo libro</h2>
 
             <form action="/Libro/store" enctype="multipart/form-data" method="POST">

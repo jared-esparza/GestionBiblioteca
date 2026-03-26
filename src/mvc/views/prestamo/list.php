@@ -9,7 +9,7 @@
         <?= $template->css() ?>
     </head>
     <body>
-        
+
         <?= $template->header('Lista de prestamos') ?>
         <?= $template->menu() ?>
         <?= $template->breadCrumbs(['Prestamos'=>null]) ?>
@@ -18,7 +18,7 @@
         <main>
             <h2>Lista completa de prestamos</h2>
             <br>
-            <?php 
+            <?php
                 echo $template->filter(
                     // opciones para el desplegable "buscar en"
                     [
@@ -72,7 +72,7 @@
                             <a class="button-success" href="/Prestamo/returndate/<?= $prestamo->id ?>">Devolucion</a>
                             <a class="button" href="/Prestamo/extend/<?= $prestamo->id ?>">Ampliar</a>
                            <?php } ?>
-                            
+
                             <a class="button-warning" href="/Prestamo/issue/<?= $prestamo->id ?>">Incidencia</a>
                             <a class="button-danger" href="/Prestamo/delete/<?= $prestamo->id ?>">Eliminar</a>
                         </td>

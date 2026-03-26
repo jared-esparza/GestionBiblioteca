@@ -7,7 +7,7 @@ class PrestamoController extends Controller{
     public function list(int $page = 1){
 
         $filtro = Filter::apply('prestamos');
-        $total = $filtro ? V_prestamo::filteredResults($filtro): V_prestamo::total();  
+        $total = $filtro ? V_prestamo::filteredResults($filtro): V_prestamo::total();
         $limit = RESULTS_PER_PAGE;
         $paginator = new Paginator('/Prestamo/list', $page, $limit, $total);
 
@@ -42,7 +42,7 @@ class PrestamoController extends Controller{
             Session::error($mensaje);
             if(DEBUG){
                 throw new SQLException($e->getMessage());
-            } 
+            }
             return redirect("/prestamo/create");
         }
     }
@@ -69,7 +69,7 @@ class PrestamoController extends Controller{
             Session::error("No se pudo actualizar el prestamo $prestamo->id.");
             if(DEBUG){
                 throw new SQLException($e->getMessage());
-            } 
+            }
             return redirect("/prestamo");
         }
     }
@@ -96,7 +96,6 @@ class PrestamoController extends Controller{
             }
             return redirect("/prestamo/delete/$id");
         }
-    
     }
 
     public function returndate(int $id){

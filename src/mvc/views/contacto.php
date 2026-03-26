@@ -4,20 +4,20 @@
 		<?= $template->metaData(
                 "Contacto",
                 "Pàgina de contacto bibliocifo"
-        ) ?>           
+        ) ?>
         <?= $template->css() ?>
-		
+
 		<!-- JS -->
 		<script src="/js/TextReader.js"></script>
 		<script src="/js/Modal.js"></script>
 	</head>
-	
+
 	<body>
-		
+
 		<?= $template->header('Aplicación BiblioCIFO') ?>
 		<?= $template->menu() ?>
 		<?= $template->messages() ?>
-		
+
 		<main>
     		<div class="flex-container gap2">
 				<section class="flex1">
@@ -44,7 +44,7 @@
 				</section>
 				<section class="flex1">
 					<h2>Ubicación y mapa</h2>
-					<iframe id="mapa" src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d2985.65043337072!2d2.0555340265492847!3d41.555165485570576!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x12a493650ae03931%3A0xee4ac6c8e8372532!2sCentre%20d&#39;Innovaci%C3%B3%20i%20Formaci%C3%B3%20Ocupacional%20(CIFO)%20de%20Sabadell!5e0!3m2!1sca!2ses!4v1774259333429!5m2!1sca!2ses" 
+					<iframe id="mapa" src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d2985.65043337072!2d2.0555340265492847!3d41.555165485570576!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x12a493650ae03931%3A0xee4ac6c8e8372532!2sCentre%20d&#39;Innovaci%C3%B3%20i%20Formaci%C3%B3%20Ocupacional%20(CIFO)%20de%20Sabadell!5e0!3m2!1sca!2ses!4v1774259333429!5m2!1sca!2ses"
 						width="600" height="450" style="border:0;" allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade">
 					</iframe>
 					<h3>Datos de contacto</h3>
@@ -55,12 +55,12 @@
 					</p>
 				</section>
 			</div>
-		    
+
 		</main>
-    
+
 		<?= $template->footer() ?>
 		<?= $template->version() ?>
-		
+
 	</body>
 </html>
 

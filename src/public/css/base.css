@@ -1,8 +1,8 @@
 @charset "UTF-8";
 
-/* 
+/*
 	FICHERO BASE PARA LOS ESTILOS DE FASTLIGHT
-	
+
 	Autor: Robert Sallent
 	Última revisión: 09/03/2026
 
@@ -27,8 +27,8 @@
 	ÍNDICES EN Z:
 	- Modales: 100
 	- Menú hamburguesa: 50
-	
-	
+
+
 	TODO list:
 	- Adaptar los templates para hacer un uso correcto de las clases CSS
 	- Añadir más clases genéricas para las figuras e imágenes
@@ -45,61 +45,61 @@
   --primary-bg-color: rgb(60, 100, 160);
   --primary-font-color: rgb(255, 255, 255);
   --primary-soft-color: rgb(120, 160, 220);
-  
+
   --secondary-bg-color: rgb(60, 160, 100);
   --secondary-font-color: rgb(255, 255, 255);
   --secondary-soft-color: rgb(100, 200, 140);
-  
+
   --alternative-bg-color: rgb(160, 180, 220);
 
   --shadow-color: rgba(100, 100, 100, 0.25);
   --font-shadow-color: rgba(0, 0, 0, 0.3);
-  
+
   --bg-color: white;
   --font-color: rgb(100, 100, 120);
   --border-color:  rgb(200, 200, 200);
   --border-color-light:  rgb(230, 230, 230);
-  
+
   --a-color: rgb(60, 100, 180);
-  
-  --main-bg-color: rgb(240, 240, 243); 
-  
+
+  --main-bg-color: rgb(240, 240, 243);
+
   --th-bg-color: rgb(60, 100, 160);
   --th-font-color: rgb(255, 255, 255);
-  
+
   --td-odd-bg-color: rgb(255, 255, 255);
   --td-even-bg-color: rgb(245, 245, 250);
-    
+
   --tfoot-bg-color: rgb(160, 180, 220);
   --tfoot-font-color: rgb(255, 255, 255);
-    
+
   --form-bg-color: rgb(255, 255, 255);
   --input-bg-color: rgb(250, 250, 250);
-  
+
   --footer-bg-color: rgba(255, 255, 255, 0.85);
   --modal-bg-color: rgba(120, 120, 120, 0.85);
-    
+
   --success-bg-color: rgb(40, 167, 69);
   --success-font-color: rgb(255,255,255);
   --success-btn-color: rgb(60, 180, 60);
   --success-btn-hover-color: rgb(110, 250, 110);
-  
+
   --warning-bg-color: rgb(255, 211, 0);
   --warning-font-color: rgb(34, 34, 34);
   --warning-btn-color: rgb(250, 200, 50);
   --warning-btn-hover-color: rgb(200, 200, 110);
-  
-  
+
+
   --danger-bg-color: rgb(217, 0, 0);
   --danger-font-color: rgb(255, 255, 255);
   --danger-btn-color: rgb(180, 60, 60);
-  --danger-btn-hover-color: rgb(250, 120, 120); 
-  
+  --danger-btn-hover-color: rgb(250, 120, 120);
+
   --code-color: rgb(40, 70, 180);
-  
+
   --selected-bg-color: rgb(230, 230, 240);
-  
-  --min-width: 280px; 
+
+  --min-width: 280px;
 }
 
 
@@ -232,9 +232,9 @@
 
 
 /* Ayuda, iconos y readables -----------------------------------------------------*/
-.help:before, 
-.info:before, 
-.readable:before, 
+.help:before,
+.info:before,
+.readable:before,
 .caution:before,
 span.document:before,
 span.zip:before,
@@ -263,11 +263,11 @@ span.url:before, span.URL:before{ content:url('../images/icons/url.png') 	}
 
 .readable:not(figure, section, div):before	{ content:url('../images/icons/speaker.png')}
 
-section.readable>h2:first-child:before, 
-section.readable>h3:first-child:before, 
+section.readable>h2:first-child:before,
+section.readable>h3:first-child:before,
 section.readable>h4:first-child:before,
-div.readable>h2:first-child:before, 
-div.readable>h3:first-child:before, 
+div.readable>h2:first-child:before,
+div.readable>h3:first-child:before,
 div.readable>h4:first-child:before{
 	content:url('../images/icons/speaker.png');
 	padding: 5px 5px 0px 0px;
@@ -363,9 +363,9 @@ figure.readable:before{
 .oculto, .hidden						{ display: none !important      }
 .no-visible, .not-visible				{ visibility: hidden !important }
 
-.transparente, .transparent 	    	{ opacity: 0    } 
+.transparente, .transparent 	    	{ opacity: 0    }
 .claro, .clear 					    	{ opacity: 0.25 }
-.casi-transparente, .almost-transparent	{ opacity: 0.5  } 
+.casi-transparente, .almost-transparent	{ opacity: 0.5  }
 .casi-opaco, .almost-opaque				{ opacity: 0.75 }
 .opaco, .opaque							{ opacity: 1    }
 
@@ -435,12 +435,12 @@ hr{
 	color: var(--a-color);
 }
 
-code { 
+code {
 	font-size: 1.10em;
-	color: var(--code-color); 
+	color: var(--code-color);
 }
 
-.code-block { 
+.code-block {
 	font-family: "Lucida Console", "Courier New", "Monaco";
 	font-size: 1rem;
 	border: solid 1px var(--border-color);
@@ -452,7 +452,7 @@ code {
 	tab-size: 1rem;
 }
 
-.code-execution { 
+.code-execution {
 	font-family: "Arial";
 	font-size: 0.9rem;
 	color: white;
@@ -462,7 +462,7 @@ code {
 	tab-size: 1rem;
 }
 
-span.path{ 
+span.path{
 	font-style:italic;
 }
 span.path::after{
@@ -495,7 +495,7 @@ span.path::before{
 
 
 /* Botones -------------------------------------------------------- */
-.button, .button-light, 
+.button, .button-light,
 .button-success, .button-success-light,
 .button-warning, .button-warning-light,
 .button-danger, .button-danger-light{
@@ -512,9 +512,9 @@ span.path::before{
 	box-shadow: 0 0px 4px var(--shadow-color);
 }
 
-td .button, td .button-light, 
+td .button, td .button-light,
 td .button-success, td .button-success-light,
-td .button-warning, td .button-warning-light, 
+td .button-warning, td .button-warning-light,
 td .button-danger, td .button-danger-light{
 	font-size: 0.85em;
 	padding: 8px 10px;
@@ -682,7 +682,7 @@ input[type="image"].action-icon{
 
 /* Listas -------------------------------------------------------- */
 ul li, ol li{
-	margin: 0 0 0.8rem 30px;	
+	margin: 0 0 0.8rem 30px;
 }
 
 li ul{
@@ -824,7 +824,7 @@ figure.seleccionada, figure.selected{
 	filter: saturate(70%);
 }
 figure.card.seleccionada, figure.card.selected{
-	background-color: var(--selected-bg-color);	
+	background-color: var(--selected-bg-color);
 }
 
 
@@ -924,9 +924,9 @@ form legend, .form legend{
 form label, .form label{
   display: inline-block;
   width: 20%;
-  min-width: 90px; 
+  min-width: 90px;
   margin: 1rem 10px;
-  font-style: italic; 
+  font-style: italic;
 }
 
 .label{
@@ -1011,7 +1011,7 @@ td form{
 }
 
 .password-wrapper input {
-  flex: 1; 
+  flex: 1;
   min-width: 0;
 }
 
@@ -1095,14 +1095,14 @@ td form{
 /* ========================= ESTRUCTURA DE LA PÁGINA ========================= */
 
 html{
-	background-color: var(--bg-color);	
+	background-color: var(--bg-color);
 }
 
 body{
 	color: var(--font-color);
 	padding: 0;
 	font-family: arial, verdana, helvetica;
-	width: 100%;	
+	width: 100%;
 	margin: 0px auto 20px auto;
 }
 
@@ -1234,16 +1234,16 @@ body{
 	font-style : normal;
 }
 
-.menu li a.url:before, 
+.menu li a.url:before,
 .menu li a.URL:before{
     display: inline-block;
     padding-right: 5px;
     vertical-align: middle;
 }
 
-.menu li a.url:before, 
-.menu li a.URL:before{ 
-	content:url('../images/icons/url.png'); 	
+.menu li a.url:before,
+.menu li a.URL:before{
+	content:url('../images/icons/url.png');
 }
 
 .menu li a{
@@ -1311,7 +1311,7 @@ section:target h2{
 
 
 main{
-	padding: 0px 1%;	
+	padding: 0px 1%;
 	margin: 0 0 1%;
 	overflow: auto;
 	background-color: var(--main-bg-color);
@@ -1413,18 +1413,18 @@ div.http-error{
 	justify-content: center;
     align-items: center;
     text-align: center;
-  
+
 	margin:   0;
 	padding:  20px;
-	
+
 	top: 0px;
 	left: 0px;
-	
+
 	width: 100vw;
 	height: 100vh;
-	
+
 	background-color: var(--modal-bg-color);
-	
+
 	z-index: 100;
 }
 

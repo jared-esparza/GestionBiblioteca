@@ -42,7 +42,7 @@ class TemaController extends Controller{
             Session::error($mensaje);
             if(DEBUG){
                 throw new SQLException($e->getMessage());
-            } 
+            }
             return redirect("/tema/create");
         }
     }
@@ -69,7 +69,7 @@ class TemaController extends Controller{
             Session::error($mensaje);
             if(DEBUG){
                 throw new SQLException($e->getMessage());
-            } 
+            }
             return redirect("/tema/edit/$id");
         }
     }
@@ -96,7 +96,7 @@ class TemaController extends Controller{
             }
             return redirect("/tema/delete/$id");
         }
-    
+
     }
 
 }

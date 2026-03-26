@@ -9,31 +9,31 @@
         <?= $template->css() ?>
     </head>
     <body>
-        
+
         <?= $template->header('Lista de libros') ?>
         <?= $template->menu() ?>
         <?= $template->breadCrumbs(['Libros'=>null]) ?>
         <?= $template->messages() ?>
 
-        <main> 
+        <main>
 
             <h2>Lista completa de libros</h2>
             <br>
-            <?php 
+            <?php
                 echo $template->filter(
                     // opciones para el desplegable "buscar en"
                     [
                         'Título' => 'titulo',
                         'Editorial' => 'editorial',
                         'Autor' => 'autor',
-                        'ISBN' => 'isbn'     
+                        'ISBN' => 'isbn'
                     ],
                     // opciones para el desplegable "ordenar por"
                     [
                         'Título' => 'titulo',
                         'Editorial' => 'editorial',
                         'Autor' => 'autor',
-                        'ISBN' => 'isbn'   
+                        'ISBN' => 'isbn'
                     ],
                     'Tiítulo', // opción seleccionada por defecto en "buscar en"
                     'Tiítulo', // opción seleccionada por defecto en "ordenar por"
