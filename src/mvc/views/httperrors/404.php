@@ -10,8 +10,8 @@
 	
 	<body>
 		
-		<?= $template->menu() ?>
 		<?= $template->header(null, 'Error 404') ?>
+		<?= $template->menu() ?>
 		<?= $template->breadCrumbs(["Error 404" => NULL]) ?>
 		<?= $template->messages() ?>
 		

@@ -10,8 +10,8 @@
 	
 	<body>
 		
-		<?= $template->menu() ?>
 		<?= $template->header(null, 'Error 419') ?>
+		<?= $template->menu() ?>
 		<?= $template->breadCrumbs(["Error 419" => NULL]) ?>
 		<?= $template->messages() ?>
 		

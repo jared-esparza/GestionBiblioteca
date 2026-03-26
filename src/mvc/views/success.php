@@ -10,8 +10,8 @@
 	
 	<body>
 		
-		<?= $template->menu() ?>
 		<?= $template->header(null, 'Éxito en la operación') ?>
+		<?= $template->menu() ?>
 		<?= $template->breadCrumbs(["Éxito" => NULL]) ?>
 		<?= $template->messages() ?>
 		<?= $template->acceptCookies() ?>

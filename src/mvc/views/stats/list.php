@@ -10,9 +10,8 @@
 	
 	<body>
 		
-		<?= $template->menu() ?>
 		<?= $template->header(null, 'Estadísticas de visitas') ?>
- 		
+		<?= $template->menu() ?>
 		<?= $template->breadCrumbs([
               "Panel de administrador" => "/Admin",
 	          "Visitas" => NULL

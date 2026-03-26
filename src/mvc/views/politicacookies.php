@@ -13,8 +13,8 @@
 	
 	<body>
 		
-		<?= $template->menu() ?>
 		<?= $template->header(null, 'Política de cookies') ?>
+		<?= $template->menu() ?>
 		<?= $template->breadCrumbs() ?>
 		<?= $template->messages() ?>
 		

@@ -14,8 +14,8 @@
 	
 	<body>
 		
-		<?= $template->menu() ?>
 		<?= $template->header('Aplicación BiblioCIFO') ?>
+		<?= $template->menu() ?>
 		<?= $template->messages() ?>
 		<?= $template->acceptCookies() ?>
 		

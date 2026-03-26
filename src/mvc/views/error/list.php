@@ -9,9 +9,8 @@
     	</head>
     	
     	<body>
-    		
-			<?= $template->menu() ?>
     		<?= $template->header(null, 'Lista de errores detectados en tiempo de ejecución') ?>
+			<?= $template->menu() ?>
     		<?= $template->breadCrumbs([
 		              "Panel de administrador" => "/Admin",
     		          "Lista de errores" => NULL  

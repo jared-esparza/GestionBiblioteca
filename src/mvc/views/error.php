@@ -9,8 +9,8 @@
 	</head>
 	
 	<body>
-		<?= $template->menu() ?>
 		<?= $template->header(null, 'Se ha producido un error') ?>
+		<?= $template->menu() ?>
 		<?= $template->breadCrumbs(["Error" => NULL]) ?>
 		<?= $template->messages() ?>
 		<?= $template->acceptCookies() ?>

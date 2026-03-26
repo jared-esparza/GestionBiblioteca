@@ -10,8 +10,8 @@
 	
 	<body>
 		
-		<?= $template->menu() ?>
 		<?= $template->header(null, 'Error 500') ?>
+		<?= $template->menu() ?>
 		<?= $template->breadCrumbs(["Error 500" => NULL]) ?>
 		<?= $template->messages() ?>
 		

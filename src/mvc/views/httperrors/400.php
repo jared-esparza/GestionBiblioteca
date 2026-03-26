@@ -9,8 +9,8 @@
 	</head>
 	<body>
 		
-		<?= $template->menu() ?>
 		<?= $template->header(null, 'Error 400') ?>
+		<?= $template->menu() ?>
 		<?= $template->breadCrumbs(["Error 400" => NULL]) ?>
 		<?= $template->messages() ?>
 		

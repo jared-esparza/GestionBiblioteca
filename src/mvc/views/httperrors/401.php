@@ -9,8 +9,8 @@
 	</head>
 	<body>
 		
-		<?= $template->menu() ?>
 		<?= $template->header(null, 'Error 401') ?>
+		<?= $template->menu() ?>
 		<?= $template->breadCrumbs(["Error 401" => NULL]) ?>
 		<?= $template->messages() ?>
 		
