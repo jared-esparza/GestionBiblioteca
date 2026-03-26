@@ -122,7 +122,7 @@
 
                     		<div class="flex-container gap2">
                         		<div class="grid-list flex1 my1">
-                            		<div class="grid-list-header">
+                            		<div class="grid-list-item">
                                         <span>Clase</span>
                                         <span>Ocurrencias</span>
                                         <span>Operaciones</span>
@@ -145,7 +145,7 @@
                         		</div>
 
                         		<div class="grid-list flex1 my1">
-                            		<div class="grid-list-header">
+                            		<div class="grid-list-item">
                                         <span>Tipo</span>
                                         <span>Ocurrencias</span>
                                         <span>Operaciones</span>

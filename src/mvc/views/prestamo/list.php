@@ -41,33 +41,33 @@
                 <?= $paginator->stats() ?>
             </div>
             <?php if($prestamos){ ?>
-                <table class="table w100">
-                    <tr>
-                        <th>ID</th>
-                        <th>Socio</th>
-                        <th>Ejemplar</th>
-                        <th>Titulo</th>
-                        <th>Limite</th>
-                        <th>Devolucion</th>
-                        <th class="centrado">Acciones</th>
-                    </tr>
+                <div class="grid-list">
+                    <div class="grid-list-header">
+                        <span>ID</span>
+                        <span>Socio</span>
+                        <span>Ejemplar</span>
+                        <span>Titulo</span>
+                        <span>Limite</span>
+                        <span>Devolucion</span>
+                        <span class="centrado">Acciones</span>
+                    </div>
                 <?php foreach($prestamos as $prestamo){ ?>
-                    <tr>
-                        <td><?= $prestamo->id ?></td>
-                        <td>
+                    <div class="grid-list-item">
+                        <span data-label="ID"><?= $prestamo->id ?></span>
+                        <span data-label="Socio">
                             <a href="/Socio/show/<?= $prestamo->idsocio ?>">
                                 <?= $prestamo->nombre . ' ' . $prestamo->apellidos ?>
                             </a>
-                        </td>
-                        <td><?= $prestamo->idejemplar ?></td>
-                        <td>
+                        </span>
+                        <span data-label="Ejemplar"><?= $prestamo->idejemplar ?></span>
+                        <span data-label="Título">
                             <a href="/Libro/show/<?= $prestamo->idlibro ?>">
                                 <?= $prestamo->titulo ?>
                             </a>
-                        </td>
-                        <td><?= $prestamo->limite ?></td>
-                        <td><?= $prestamo->devolucion ?></td>
-                        <td>
+                        </span>
+                        <span data-label="Límite"><?= $prestamo->limite ?></span>
+                        <span data-label="Devolución"><?= $prestamo->devolucion ?></span>
+                        <span data-label="Acciones">
                         <?php if(!$prestamo->devolucion){ ?>
                             <a class="button-success" href="/Prestamo/returndate/<?= $prestamo->id ?>">Devolucion</a>
                             <a class="button" href="/Prestamo/extend/<?= $prestamo->id ?>">Ampliar</a>
@@ -75,10 +75,10 @@
 
                             <a class="button-warning" href="/Prestamo/issue/<?= $prestamo->id ?>">Incidencia</a>
                             <a class="button-danger" href="/Prestamo/delete/<?= $prestamo->id ?>">Eliminar</a>
-                        </td>
-                    </tr>
+                        </span>
+                    </div>
                 <?php } ?>
-                </table>
+                </div>
                 <?= $paginator->ellipsisLinks() ?>
             <?php } else { ?>
                 <div class="danger p2">

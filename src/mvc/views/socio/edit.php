@@ -63,25 +63,25 @@
 
                 <h2>Lista de prestamos</h2>
                 <a class="button" href="/Prestamo/create/<?= $socio->id ?>">Nuevo prestamo</a>
-                <table class="table w100">
-                    <tr>
-                        <th>Libro</th>
-                        <th>Prestamo</th>
-                        <th>Limite</th>
-                        <th>Devolucion</th>
-                        <th>Incidencia</th>
-                    </tr>
+                <div class="grid-list">
+                    <div class="grid-list-header">
+                        <span>Libro</span>
+                        <span>Prestamo</span>
+                        <span>Límite</span>
+                        <span>Devolución</span>
+                        <span>Incidencia</span>
+                    </div>
                 <?php
                     foreach($prestamos as $prestamo){?>
-                    <tr>
-                        <td><?= $prestamo->titulo ?></td>
-                        <td><?= $prestamo->prestamo ?></td>
-                        <td><?= $prestamo->limite ?></td>
-                        <td><?= $prestamo->devolucion ?></td>
-                        <td><?= $prestamo->incidencia ?></td>
-                    </tr>
+                    <div class="grid-list-item">
+                        <span data-label="Título"><?= $prestamo->titulo ?></span>
+                        <span data-label="Prestamo"><?= $prestamo->prestamo ?></span>
+                        <span data-label="Límite"><?= $prestamo->limite ?></span>
+                        <span data-label="Devolución"><?= $prestamo->devolucion ?></span>
+                        <span data-label="Incidencia"><?= $prestamo->incidencia ?></span>
+                    </div>
                     <?php } ?>
-                </table>
+                </div>
             </form>
             <div class="centrado my2">
                 <a class="button" onclick="history.back()">Atrás</a>

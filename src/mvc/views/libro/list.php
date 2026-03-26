@@ -43,37 +43,37 @@
                 <?= $paginator->stats() ?>
             </div>
             <?php if($libros){ ?>
-                <table class="table w100">
-                    <tr>
-                        <th>Portada</th>
-                        <th>ISBN</th>
-                        <th>Titulo</th>
-                        <th>Autor</th>
-                        <th>Ejemplares</th>
-                        <th class="centrado">Operaciones</th>
-                    </tr>
+                <div class="grid-list">
+                    <div class="grid-list-header">
+                        <span>Portada</span>
+                        <span>ISBN</span>
+                        <span>Titulo</span>
+                        <span>Autor</span>
+                        <span>Ejemplares</span>
+                        <span class="centrado">Operaciones</span>
+                    </div>
                 <?php foreach($libros as $libro){ ?>
-                    <tr>
-                        <td class="centrado">
+                    <div class="grid-list-item">
+                        <span data-label="Portada" class="centrado">
                             <a href="/Libro/show/<?= $libro->id ?>">
                                 <img src="<?= BOOK_IMAGE_FOLDER . '/' .($libro->portada ?? DEFAULT_BOOK_IMAGE) ?>" class="table-image">
                             </a>
-                        </td>
-                        <td><?= $libro->isbn ?></td>
-                        <td><?= $libro->titulo ?></td>
-                        <td><?= $libro->autor ?></td>
-                        <td><?= $libro->ejemplares ?></td>
+                        </span>
+                        <span data-label="ISBN"><?= $libro->isbn ?></span>
+                        <span data-label="Título"><?= $libro->titulo ?></span>
+                        <span data-label="Autor"><?= $libro->autor ?></span>
+                        <span data-label="Ejemplares"><?= $libro->ejemplares ?></span>
 
-                        <td class="centrado">
+                        <span data-label="Operaciones" class="centrado">
                            <a href="/Libro/show/<?= $libro->id ?>">Ver</a>
                            <a href="/Libro/edit/<?= $libro->id ?>">Editar</a>
                            <?php if(!$libro->ejemplares){ ?>
                                 <a href="/Libro/delete/<?= $libro->id ?>">Borrar</a>
                            <?php } ?>
-                        </td>
-                    </tr>
+                        </span>
+                    </div>
                 <?php } ?>
-                </table>
+                </div>
                 <?= $paginator->ellipsisLinks() ?>
             <?php } else { ?>
                 <div class="danger p2">

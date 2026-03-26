@@ -89,27 +89,27 @@
                 </script>
                 <h2>Ejemplares de este libro</h2>
                 <a class="button" href="/Ejemplar/create/<?= $libro->id ?>">Nuevo ejemplar</a>
-                <table class="table w100">
-                    <tr>
-                        <th>ID</th>
-                        <th>Estado</th>
-                        <th>Precio</th>
-                        <th>Acciones</th>
-                    </tr>
+                <div class="grid-list">
+                    <div class="grid-list-header">
+                        <span>ID</span>
+                        <span>Estado</span>
+                        <span>Precio</span>
+                        <span>Acciones</span>
+                    </div>
             <?php foreach($ejemplares as $ejemplar){?>
-                    <tr>
-                        <td><?=$ejemplar->id?></td>
-                        <td><?=$ejemplar->estado?></td>
-                        <td><?=$ejemplar->precio . ' €'?></td>
-                        <td>
+                    <div class="grid-list-item">
+                        <span data-label="ID"><?=$ejemplar->id?></span>
+                        <span data-label="Estado"><?=$ejemplar->estado?></span>
+                        <span data-label="Precio"><?=$ejemplar->precio . ' €'?></span>
+                        <span data-label="Acciones">
                             <a class="button" href="/Ejemplar/edit/<?= $ejemplar->id ?>">Editar</a>
                             <?php if(!$ejemplar->hasAny('Prestamo')){ ?>
                                 <a class="button" onclick="confirmar(<?= $ejemplar->id?>)">Borrar</a>
                             <?php } ?>
-                        </td>
-                    </tr>
+                        </span>
+                    </div>
                 <?php } ?>
-                </table>
+                </div>
                 </section>
                 <section>
                     <h2>Temas de este libro</h2>
@@ -122,30 +122,30 @@
                         </select>
                         <input type="submit" value="Añadir Tema" name="add" class="button-success">
                     </form>
-                    <table class="table w100">
-                        <tr>
-                            <th>ID</th>
-                            <th>Tema</th>
-                            <th>Acciones</th>
-                        </tr>
+                    <div class="grid-list">
+                        <div class="grid-list-header">
+                            <span>ID</span>
+                            <span>Tema</span>
+                            <span>Acciones</span>
+                        </div>
                     <?php foreach($temas as $tema){?>
-                        <tr>
-                            <td><?=$tema->id?></td>
-                            <td>
+                        <div class="grid-list-item">
+                            <span data-label="ID"><?=$tema->id?></span>
+                            <span data-label="Tema">
                                 <a href="/Tema/show/<?=$tema->id?>">
                                     <?=$tema->tema?>
                                 </a>
-                            </td>
-                            <td class="centrado">
+                            </span>
+                            <span data-label="Acciones" class="centrado">
                                 <form action="/Libro/removetema" method="POST" class="no-border">
                                     <input type="hidden" name="idlibro" value="<?= $libro->id ?>">
                                     <input type="hidden" name="idtema" value="<?= $tema->id ?>">
                                     <input type="submit" value="Borrar" name="remove" class="button-danger">
                                 </form>
-                            </td>
-                        </tr>
+                            </span>
+                        </div>
                         <?php } ?>
-                    </table>
+                    </div>
                 </section>
                 </div>
 

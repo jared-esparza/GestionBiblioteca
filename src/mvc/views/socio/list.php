@@ -52,31 +52,31 @@
                 <?= $paginator->stats() ?>
             </div>
             <?php if($socios){ ?>
-                <table class="table w100">
-                    <tr>
-                        <th>DNI</th>
-                        <th>Nombre</th>
-                        <th>Poblacion</th>
-                        <th>Telefono</th>
-                        <th>Email</th>
-                        <th class="centrado">Operaciones</th>
-                    </tr>
+                <div class="grid-list">
+                    <div class="grid-list-header">
+                        <span>DNI</span>
+                        <span>Nombre</span>
+                        <span>Poblacion</span>
+                        <span>Telefono</span>
+                        <span>Email</span>
+                        <span class="centrado">Operaciones</span>
+                    </div>
                 <?php foreach($socios as $socio){ ?>
-                    <tr>
-                        <td><?= $socio->dni ?></td>
-                        <td><?= $socio->nombre ?></td>
-                        <td><?= $socio->poblacion ?></td>
-                        <td><?= $socio->telefono ?></td>
-                        <td><?= $socio->email ?></td>
+                    <div class="grid-list-item">
+                        <span data-label="DNI"><?= $socio->dni ?></span>
+                        <span data-label="Nombre"><?= $socio->nombre ?></span>
+                        <span data-label="Población"><?= $socio->poblacion ?></span>
+                        <span data-label="Teléfono"><?= $socio->telefono ?></span>
+                        <span data-label="Email"><?= $socio->email ?></span>
 
-                        <td class="centrado">
+                        <span data-label="Operaciones" class="centrado">
                             <a href="/Socio/show/<?= $socio->id ?>">Ver</a>
                             <a href="/Socio/edit/<?= $socio->id ?>">Editar</a>
                             <a href="/Socio/delete/<?= $socio->id ?>">Borrar</a>
-                        </td>
-                    </tr>
+                        </span>
+                    </div>
                 <?php } ?>
-                </table>
+                </div>
                 <?= $paginator->ellipsisLinks() ?>
             <?php } else { ?>
                 <div class="danger p2">

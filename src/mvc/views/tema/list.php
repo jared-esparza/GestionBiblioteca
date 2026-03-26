@@ -40,24 +40,24 @@
                 <?= $paginator->stats() ?>
             </div>
             <?php if($temas){ ?>
-                <table class="table w100">
-                    <tr>
-                        <th>Tema</th>
-                        <th>Descripcion</th>
-                        <th class="centrado">Operaciones</th>
-                    </tr>
+                <div class="grid-list">
+                    <div class="grid-list-header">
+                        <span>Tema</span>
+                        <span>Descripcion</span>
+                        <span class="centrado">Operaciones</span>
+                    </div>
                 <?php foreach($temas as $tema){ ?>
-                    <tr>
-                        <td><?= $tema->tema ?></td>
-                        <td><?= $tema->descripcion ?></td>
-                        <td class="centrado">
+                    <div class="grid-list-item">
+                        <span data-label="Tema"><?= $tema->tema ?></span>
+                        <span data-label="Descripción"><?= $tema->descripcion ?></span>
+                        <span data-label="Operaciones" class="centrado">
                             <a href="/Tema/show/<?= $tema->id ?>">Ver</a>
                             <a href="/Tema/edit/<?= $tema->id ?>">Editar</a>
                             <a href="/Tema/delete/<?= $tema->id ?>">Borrar</a>
-                        </td>
-                    </tr>
+                        </span>
+                    </div>
                 <?php } ?>
-                </table>
+                </div>
                 <?= $paginator->ellipsisLinks() ?>
             <?php } else { ?>
                 <div class="danger p2">

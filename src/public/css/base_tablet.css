@@ -1,6 +1,6 @@
-/* 
+/*
 	FICHERO CON EL ESTILO PARA TABLET
-	
+
 	Autor: Robert Sallent
 	Última revisión: 05/02/2024
 */
@@ -53,15 +53,15 @@
 	text-align: left;
 }
 
-#filtro label, 
-#filtro input[type='text'], 
-#filtro input[type='search'], 
+#filtro label,
+#filtro input[type='text'],
+#filtro input[type='search'],
 #filtro select{
 	display: block;
 	width: 100%;
 }
 
-#filtro input[type='text'], 
+#filtro input[type='text'],
 #filtro input[type='search'],
 #filtro select{
 	margin-bottom: 5px;

@@ -46,42 +46,42 @@
             <section>
                 <h2>Ejemplares de este libro</h2>
                 <a class="button" href="/Ejemplar/create/<?= $libro->id ?>">Nuevo ejemplar</a>
-                <table class="table w100">
-                <tr>
-                    <th>ID</th>
-                    <th>Estado</th>
-                    <th>Precio</th>
-                </tr>
+                <div class="grid-list">
+                    <div class="grid-list-header">
+                        <span>ID</span>
+                        <span>Estado</span>
+                        <span>Precio</span>
+                    </div>
             <?php
                 foreach($ejemplares as $ejemplar){?>
-                    <tr>
-                        <td><?=$ejemplar->id?></td>
-                        <td><?=$ejemplar->estado?></td>
-                        <td><?=$ejemplar->precio . ' €'?></td>
-                    </tr>
+                    <div class="grid-list-item">
+                        <span data-label="ID"><?=$ejemplar->id?></span>
+                        <span data-label="Estado"><?=$ejemplar->estado?></span>
+                        <span data-label="Precio"><?=$ejemplar->precio . ' €'?></span>
+                    </div>
             <?php } ?>
-            </table>
+            </div>
         </section>
         <section>
             <h2>Temas de este libro</h2>
-            <table class="table w100">
-                <tr>
-                    <th>ID</th>
-                    <th>Tema</th>
-                </tr>
+            <div class="grid-list">
+                <div class="grid-list-header">
+                    <span>ID</span>
+                    <span>Tema</span>
+                </div>
             <?php
 
                 foreach($temas as $tema){?>
-                <tr>
-                    <td><?=$tema->id?></td>
-                    <td>
+                <div class="grid-list-item">
+                    <span data-label="ID"><?=$tema->id?></span>
+                    <span data-label="Tema">
                         <a href="/Tema/show/<?=$tema->id?>">
                             <?=$tema->tema?>
                         </a>
-                    </td>
-                </tr>
+                    </span>
+                </div>
                 <?php } ?>
-            </table>
+            </div>
         </section>
             <div class="centrado">
                 <a class="button" onclick="history.back()">Atrás</a>

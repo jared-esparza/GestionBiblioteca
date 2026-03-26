@@ -25,26 +25,26 @@
                 <p><b>Descripcion:</b> <?= $tema->descripcion ?></p>
 
                 <h2>Lista de libros</h2>
-                <table class="table w100">
-                    <tr>
-                        <th>Titulo</th>
-                        <th>Autor</th>
-                        <th>Editorial</th>
-                    </tr>
+                <div class="grid-list">
+                    <div class="grid-list-header">
+                        <span>Título</span>
+                        <span>Autor</span>
+                        <span>Editorial</span>
+                    </div>
                 <?php
                     $libros = $tema->belongsToMany('Libro', 'temas_libros');
                     foreach($libros as $libro){?>
-                    <tr>
-                        <td>
+                    <div class="grid-list-item">
+                        <span data-label="Título">
                             <a href="/Libro/show/<?=$libro->id?>">
                                 <?=$libro->titulo?>
                             </a>
-                        </td>
-                        <td><?=$libro->autor?></td>
-                        <td><?=$libro->editorial?></td>
-                    </tr>
+                        </span>
+                        <span data-label="Autor"><?=$libro->autor?></span>
+                        <span data-label="Editorial"><?=$libro->editorial?></span>
+                    </div>
                     <?php } ?>
-                </table>
+                </div>
             </section>
             <div class="centrado">
                 <a class="button" onclick="history.back()">Atrás</a>

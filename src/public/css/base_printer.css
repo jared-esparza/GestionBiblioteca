@@ -1,18 +1,18 @@
-/* 
+/*
 	FICHERO CON EL ESTILO PARA IMPRESORA
-	
+
 	Autor: Robert Sallent
 	Última revisión: 21/08/2025
 */
 
 @page{
-  size:  auto;   	  
-  margin: 15mm 10mm; 
+  size:  auto;
+  margin: 15mm 10mm;
 }
 
 
-.pagebreak { 
-	page-break-before: always; 
+.pagebreak {
+	page-break-before: always;
 }
 
 
@@ -26,7 +26,7 @@
 }
 
 /* Elementos que no deben ser visibles en las páginas impresas -------------------------------------------------------*/
-#login-bar, #login, #logout, #main-menu, #breadcrumbs, #filtro, #main-footer, #version, 
+#login-bar, #login, #logout, #main-menu, #breadcrumbs, #filtro, #main-footer, #version,
 .modal, .info, .pc,
 .button, .button-light, .button-success, .button-warning, .button-danger, .button-light, .button-light-success, .button-light-warning, .button-light-danger{
 	display:none !important;
@@ -43,7 +43,7 @@ p{
 /* Estructura del documento -------------------------------------------------------*/
 body{
 	font-family: Arial, Helvetica, sans-serif;
-	width: 100%; 
+	width: 100%;
 	border:none;
 	box-shadow: none;
 	margin: 0;
@@ -75,7 +75,7 @@ body{
 
 
 main{
-	 border: none; 
+	 border: none;
 	 padding: 0;
     margin: 0;
 }
@@ -123,7 +123,7 @@ table th{
 
 table tr:nth-of-type(even){
   background-color: unset;
-  box-shadow: inset 0 0 0 200px #eee; 
+  box-shadow: inset 0 0 0 200px #eee;
 }
 
 table tr:nth-of-type(odd){
