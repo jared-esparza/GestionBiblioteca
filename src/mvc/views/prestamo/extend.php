@@ -27,7 +27,8 @@
                 <div class="flex2">
                     <input type="hidden" value="<?= $prestamo->id ?>" name="id">
                     <label>Nueva fecha limite:</label>
-                    <input type="date" name="limite"  value="<?= old('limite', date('Y-m-d', strtotime($prestamo->limite . ' +1 week'))) ?>">
+                    <input type="date" name="limite"  
+                        value="<?= old('limite', date('Y-m-d', strtotime($prestamo->limite . ' +1 week'))) ?>">
                 </div>
                 <div class="centered mt2">
                     <input type="submit" class="button" name="actualizar" value="Actualizar">

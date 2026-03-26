@@ -190,6 +190,9 @@ define('TEST_ROLES', ['ROLE_ADMIN', 'ROLE_TEST']);
 // roles que tienen autorización para ver las estadísticas de visitas
 define('STATS_ROLES', ['ROLE_ADMIN', 'ROLE_TEST']);
 
+// roles que pueden acceder al panel del bibliotecario
+define('LIBRARIAN_PANEL_ROLES', ['ROLE_ADMIN', 'ROLE_TEST', 'ROLE_LIBRARIAN']);
+
 // redirección tras el intento de Login de un usuario bloqueado
 // será '/Contacto' una vez implementado el formulario de contacto (en clase)
 define('BLOCKED_REDIRECT', '/');

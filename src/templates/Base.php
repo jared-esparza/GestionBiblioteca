@@ -272,11 +272,15 @@ class Base implements TemplateInterface{
         // enlace al panel del administrador
         if(Login::oneRole(ADMIN_PANEL_ROLES))
             $html .= "\t\t<li><a href='/Admin'>Panel del administrador</a></li>\n";
-            
+                // enlace al panel del bibliotecario
+        if(Login::oneRole(LIBRARIAN_PANEL_ROLES))
+            $html .= "\t\t<li><a href='/Bibliotecario'>Panel del bibliotecario</a></li>\n";
+        
         $html .= "\t\t<li><a href='/Libro'>Libros</a></li>\n";
-        $html .= "\t\t<li><a href='/Socio'>Socios</a></li>\n";
+        // $html .= "\t\t<li><a href='/Socio'>Socios</a></li>\n";
         $html .= "\t\t<li><a href='/Tema'>Temas</a></li>\n";
-        $html .= "\t\t<li><a href='/Prestamo'>Prestamos</a></li>\n";
+        // $html .= "\t\t<li><a href='/Prestamo'>Prestamos</a></li>\n";
+        $html .= "\t\t<li><a href='/Contacto'>Contacto</a></li>\n";
 
 
         // fin del menú principal
