@@ -21,7 +21,7 @@
         <main>
             <h1><?= APP_NAME?></h1>
 
-            <h2>Nuevo prestamo</h2>
+            <h2>Nuevo prestamo <?= $socio ? "para $socio->nombre" . " " .$socio->apellidos : "" ?></h2>
 
             <form action="/Prestamo/store" enctype="multipart/form-data" method="POST">
                 <div class="flex2">
@@ -29,8 +29,8 @@
                     <input type="text" name="idejemplar" value="<?= old('idejemplar')?>">
                     <br>
                     <label>ID Socio:</label>
-                    <?php if($idsocio){ ?>
-                        <input type="text" name="idsocio" value="<?=$idsocio?>" disabled>
+                    <?php if($socio){ ?>
+                        <input type="text" name="idsocio" value="<?=$socio->id?>" disabled>
 
                     <?php } else { ?>
                         <input type="text" name="idsocio" value="<?= old('idsocio')?>">

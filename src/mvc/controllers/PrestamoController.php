@@ -22,10 +22,11 @@ class PrestamoController extends Controller{
     // }
 
     public function create($idsocio=null){
+        $socio = null;
         if($idsocio){
-            Socio::findOrFail($idsocio, "No se ha encontrado el socio indicado");
+            $socio = Socio::findOrFail($idsocio, "No se ha encontrado el socio indicado");
         }
-        return view('prestamo/create', ['idsocio'=>$idsocio]);
+        return view('prestamo/create', ['socio'=>$socio]);
     }
 
     public function store(){
