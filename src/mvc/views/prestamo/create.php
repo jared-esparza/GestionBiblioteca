@@ -30,10 +30,10 @@
                     <br>
                     <label>ID Socio:</label>
                     <?php if($socio){ ?>
-                        <input type="text" name="idsocio" value="<?=$socio->id?>" disabled>
+                        <input type="number" name="idsocio" value="<?=$socio->id?>" readonly>
 
                     <?php } else { ?>
-                        <input type="text" name="idsocio" value="<?= old('idsocio')?>">
+                        <input type="number" name="idsocio" value="<?= old('idsocio')?>">
                     <?php } ?>
                     <br>
                     <label>Limite:</label>

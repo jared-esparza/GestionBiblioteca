@@ -38,7 +38,7 @@ class PrestamoController extends Controller{
             Session::success("Guardado del prestamo $prestamo->id correcto.");
             return redirect("/socio/show/$prestamo->idsocio");
         }catch(SQLException $e){
-            $mensaje = "No se pudo guardar el prestamo $prestamo->prestamo.";
+            $mensaje = "No se pudo guardar el prestamo $prestamo->id.";
 
             if(str_contains($e->getMessage(),'Duplicate entry')){
                 $mensaje .= "<br> ya existe un prestamo con el nombre $prestamo->id.";
