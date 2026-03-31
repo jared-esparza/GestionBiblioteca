@@ -11,6 +11,6 @@
  *   @since v1.3.0
  */
 class HttpHeaderBag extends Bag{
-  
+
 }
 

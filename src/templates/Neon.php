@@ -11,7 +11,7 @@
  */
 
 class Neon extends Base{
-    
+
     // ficheros CSS para usar con este template
     protected array $css = [
         'standard'  => '/css/neon.css',
@@ -19,6 +19,6 @@ class Neon extends Base{
         'phone'     => '/css/base_phone.css',
         'printer'   => '/css/base_printer.css'
     ];
-    
+
 }
 

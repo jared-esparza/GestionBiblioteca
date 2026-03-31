@@ -12,8 +12,8 @@
 
 
 class JsonResponse extends ApiResponse implements JsonSerializable{
-       
-    
+
+
     /**
      * Constructor de JsonResponse.
      */
@@ -22,12 +22,12 @@ class JsonResponse extends ApiResponse implements JsonSerializable{
         string $message     = '',
         int $httpCode       = 200,
         string $status      = 'OK'
-    ){        
+    ){
         parent::__construct($data, $message, 'application/json', $httpCode, $status);
     }
-       
-    
-    
+
+
+
     /**
      * {@inheritDoc}
      * @see JsonSerializable::jsonSerialize()
@@ -40,19 +40,19 @@ class JsonResponse extends ApiResponse implements JsonSerializable{
             'message'   => $this->message,
             'data'      => $this->data
         ];
-        
+
         if(DEBUG && $this->debug)
             $info['debug'] = $this->debug;
-        
+
         return $info;
     }
-    
-    
+
+
     /** Envía la respuesta JSON */
     public function send(){
         $this->prepare();
         echo JSON::encode($this, true, true); // por motivos docentes, las respuestas se codifican "bonitas"
         die();
     }
-    
+
 }

@@ -12,8 +12,8 @@
 
 
 class XmlResponse extends ApiResponse{
-       
-    
+
+
     /**
      * Constructor de XmlResponse.
      */
@@ -22,17 +22,17 @@ class XmlResponse extends ApiResponse{
         string $message     = '',
         int $httpCode       = 200,
         string $status      = 'OK'
-    ){        
+    ){
         parent::__construct($data, $message, 'text/xml', $httpCode, $status);
     }
-        
-    
+
+
     /** Envía la respuesta XML */
-    
+
     // TODO: arreglar este método para que lo haga bien a partir de XML::encode()
     public function send(){
         $this->prepare();
-        
+
         $respuesta = "<?xml version='1.0' encoding='utf-8'?>\n
                       <respuesta>\n
                         \t<status>$this->status</status>\n
@@ -40,14 +40,14 @@ class XmlResponse extends ApiResponse{
                         \t<results>$this->results</results>\n
                         \t<message>".htmlspecialchars($this->message)."</message>\n
                         \t<data>".arrayToString($this->data, false, false, "; ")."</data>\n";
-                        
+
         if(DEBUG)
             $respuesta.= "\t<debug>".htmlspecialchars($this->debug ?? '')."</debug>\n";
-         
+
         $respuesta .= "</respuesta>";
 
         echo $respuesta;
         die();
     }
-    
+
 }

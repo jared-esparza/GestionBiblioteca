@@ -1,7 +1,7 @@
 <?php
 /**
  * This is a PHP library that handles calling reCAPTCHA.
- * 
+ *
  * @copyright Copyright (c) 2014, Google Inc.
  * @link      http://www.google.com/recaptcha
  * */

@@ -12,11 +12,11 @@
  *   @since v2.1.0 añadido el parámetro $default al método get()
  */
 class HttpCookie{
-    
+
     /**
      * Constructor
-     * 
-     * @param string $name nombre de la cookie 
+     *
+     * @param string $name nombre de la cookie
      * @param string $value valor de la cookie
      * @param int $expires tiempo de expiración (0 para cookie de sesión)
      * @param string $path ruta para la que es válida la cookie en el servidor
@@ -33,14 +33,14 @@ class HttpCookie{
         private bool $secure    = false,
         private bool $httpOnly  = false
     ){}
-    
-     
-    
+
+
+
     /**
      * Envía una cookie haciendo uso del método setcookie() de PHP
-     * 
+     *
      * TODO: hacerlo mediante cabeceras HTTP
-     * 
+     *
      * @return bool
      */
     public function send():bool{
@@ -54,33 +54,33 @@ class HttpCookie{
                     $this->httpOnly
                 );
     }
-    
-    
-    
-    
+
+
+
+
     /**
      * Recupera el valor de una cookie,
-     * 
+     *
      * @param string $name nombre de la cookie a recuperar
      * @param ?string $default valor por defecto
-     * 
+     *
      * @return string|NULL valor recuperado o null si no existe la cookie
      */
     public static function get(
         string $name,
         ?string $default = null
     ):?string{
-            
+
         $data = filter_input(INPUT_COOKIE, $name, FILTER_SANITIZE_SPECIAL_CHARS);
-        
+
         if(!$data || EMPTY_STRINGS_TO_NULL && trim($data === ''))
             return $default;
-            
+
         return trim($data);
     }
-    
-    
-    
+
+
+
     /**
      * Retorna un array con todas las entradas de $_COOKIE saneadas.
      *
@@ -89,22 +89,22 @@ class HttpCookie{
      */
     public static function all():array{
         $all = [];
-        
+
         foreach($_COOKIE as $property => $value){
-            
+
             $value = filter_input(INPUT_COOKIE, $property, FILTER_SANITIZE_SPECIAL_CHARS);
-            
+
             // si hay que pasar la cadena vacía a NULL...
             if(!$value || EMPTY_STRINGS_TO_NULL && trim($value) === ''){
                 $all[$property] = NULL;
                 continue;
             }
-            
+
             $all[$property] =  trim($value);
         }
-        
+
         return $all;
     }
-      
+
 }
 

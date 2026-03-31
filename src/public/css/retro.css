@@ -1,6 +1,6 @@
-/* 
+/*
 	FICHERO CON ESTILO RETRO
-	
+
 	Autor: Robert Sallent
 	Última revisión: 27/03/2023
 */
@@ -117,12 +117,12 @@ img{
 body{
 	padding: 20px;
 	font-family: Oswald, arial, verdana, helvetica;
-	width: 100%;	
+	width: 100%;
 	margin: 20px auto;
 }
 
 main{
-	padding: 20px;	
+	padding: 20px;
 	margin: 20px auto;
 	border: solid 2px black;
 	border-radius: 10px;
@@ -303,7 +303,7 @@ form.filtro{
 
 label{
   display: inline-block;
-  min-width: 80px; 
+  min-width: 80px;
   margin: 10px;
   font-style: italic;
 }
@@ -393,7 +393,7 @@ textarea{
 /* listas genéricas */
 ul.listado li, ol.listado li{
 	margin: 10px 0px 5px 20px;
-	
+
 }
 
 /* imágenes */

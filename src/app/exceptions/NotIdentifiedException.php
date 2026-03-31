@@ -13,10 +13,10 @@
  */
 
 class NotIdentifiedException extends FastLightException{
-    
+
     /** @var string url para la redirección tras identificación  */
     protected ?string $url;
-    
+
     /**
      * Constructor
      *
@@ -36,8 +36,8 @@ class NotIdentifiedException extends FastLightException{
             parent::__construct($message, $code, $previous, $type);
             $this->url = $url;
     }
-    
-    
+
+
     /**
      * Getter para la propiedad url
      *

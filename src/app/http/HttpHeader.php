@@ -13,10 +13,10 @@
  *   @since v2.1.0 añadido el parámetro $default al método get()
  */
 class HttpHeader{
-    
+
     /**
      * Constructor
-     * 
+     *
      * @param string $header
      * @param bool $replace
      * @param int $responseCode
@@ -26,12 +26,12 @@ class HttpHeader{
         private bool $replace     = true,
         private int $responseCode = 0
     ){}
-    
 
-    
+
+
     /**
      * Recupera un encabezado HTTP
-     * 
+     *
      * @param string $name nombre de la cabecera HTTP
      * @param ?string $default valor por defecto
      *
@@ -39,13 +39,13 @@ class HttpHeader{
      */
     public static function get(
         string $name,
-        ?string $default = null    
+        ?string $default = null
     ):?string{
         return apache_request_headers()[$name] ?? $default;
     }
-    
-    
-    
+
+
+
     /**
      * Recupera todos los encabezados HTTP
      *
@@ -55,8 +55,8 @@ class HttpHeader{
     public static function all():array{
         return apache_request_headers();
     }
-    
-    
+
+
     /**
      * Adjunta una cabecera HTTP
      */
@@ -67,7 +67,7 @@ class HttpHeader{
             $this->responseCode
         );
     }
-    
+
 }
 
 

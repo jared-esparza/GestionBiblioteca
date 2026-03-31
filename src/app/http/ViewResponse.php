@@ -11,14 +11,14 @@
  */
 
 class ViewResponse extends Response{
-        
+
     /** @var View $view vista a cargar */
     protected View $view;
-    
-   
+
+
     /**
      * Constructor de ViewResponse
-     * 
+     *
      * @param string $name nombre de la vista a cargar
      * @param array $params array asociativo con los parámetros a pasar a la vista
      * @param int $httpCode código HTTP
@@ -29,15 +29,15 @@ class ViewResponse extends Response{
         array $params       = [],
         int $httpCode       = 200,
         string $status      = 'OK'
-    ){    
+    ){
         // llama al constructor de la clase padre
         parent::__construct('text/html', $httpCode, $status);
-        
+
         // propiedades no heredadas
-        $this->view = new View($name, $params);  
+        $this->view = new View($name, $params);
     }
-    
-    
+
+
     /**
      * Getter de view
      *
@@ -46,8 +46,8 @@ class ViewResponse extends Response{
     public function getView():View{
         return $this->view;
     }
-    
-    
+
+
     /**
      * Setter de view
      *
@@ -56,15 +56,15 @@ class ViewResponse extends Response{
     public function setView(View $view){
         $this->view = $view;
     }
-    
-       
+
+
     /**
      * Prepara y envía la respuesta al cliente
      */
-    public function send(){      
+    public function send(){
         $this->prepare();      // añade las cookies y las cabeceras HTTP a la respuesta
         $this->view->load();   // carga la vista
         die();                 // finaliza la ejecución
-    } 
+    }
 }
 

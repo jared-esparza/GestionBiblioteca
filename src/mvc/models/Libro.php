@@ -2,7 +2,7 @@
 #[\AllowDynamicProperties]
 
 class Libro extends Model{
-    protected static $fillable = ["isbn", "titulo", "editorial", "idioma", "autor", 
+    protected static $fillable = ["isbn", "titulo", "editorial", "idioma", "autor",
         "edicion", "anyo", "edadrecomendada", "portada", "caracteristicas", "sinopsis", "paginas"];
 
     public function addtema(int $idtema):int {

@@ -2,9 +2,9 @@
 
 /**
  * Funciones helper para realizar tareas habituales.
- * 
+ *
  * Última revisión: 23/02/2026
- * 
+ *
  * @author Robert Sallent <robertsallent@gmail.com>
  * @since v1.4.2 añadido el helper request() que retorna el objeto Request con información de la petición.
  * @since v1.4.2 añadido el helper user() que retorna el usuario identificado.
@@ -28,23 +28,23 @@
 /**
  * Función para volcar el contenido de variables sobre el documento.
  * Útil para depuración.
- * 
+ *
  * @param mixed $thing variable a mostrar.
  */
 function dump(...$things){
     echo "<pre>";
-    
+
     foreach($things as $thing)
         var_dump($thing);
-    
+
     echo "</pre>";
 }
 
 
 /**
- * Dump and Die, vuelca el contenido de variables sobre el documento 
- * y detiene la ejecución. 
- * 
+ * Dump and Die, vuelca el contenido de variables sobre el documento
+ * y detiene la ejecución.
+ *
  * @param mixed $thing variable a mostrar.
  * @param string $message mensaje a mostrar al finalizar la ejecución.
  */
@@ -64,13 +64,13 @@ function dd($thing, string $message = 'Se detuvo la ejecución.'){
 
 /**
  * Convierte un array en string para ser mostrado en vistas o mensajes.
- * 
+ *
  * @param array $lista array a convertir.
  * @param bool $brackets mostrar corchetes rodeando el array?
  * @param bool $associative se trata de un array asociativo?
  * @param string $separator separador de elementos, por defecto la coma y un espacio.
  * @param string $keyValueSeparator separador entre clave y valor.
- * 
+ *
  * @return string representación del array a modo texto.
  */
 function arrayToString(
@@ -80,68 +80,68 @@ function arrayToString(
     string $separator = ", ",
     string $keyValueSeparator = " => "
 ):string{
-    
+
     $texto = '';
-    
+
     foreach($lista as $clave => $valor){
-        
+
         if(gettype($valor)=='array')
             $valor = arrayToString($valor, $brackets, $associative, $separator);
-        
+
         $texto .= $associative ? "$clave $keyValueSeparator $valor$separator" : "$valor$separator";
     }
-    
+
     return $brackets ? '[ '.rtrim($texto, "$separator").' ]' : rtrim($texto, "$separator");
 }
 
 
 /**
- * Normaliza los saltos de línea en \n. 
- * 
+ * Normaliza los saltos de línea en \n.
+ *
  * Se implementa de esta forma porque FastLight (por ahora) guarda los datos escapados y las entidades
  * en la base de datos. Al ser un framework para docencia, lo hago así por seguridad.
- * 
+ *
  * @param string $text texto a normalizar
  * @return string texto normalizado
  */
 function makeEndLines(string $text = ''): string{
     // Normalizar y eliminar saltos de línea consecutivos
     $text = preg_replace("/(?:&#13;&#10;|&#13;|&#10;){2,}/", "\n", $text);
-    
+
     // eliminar los saltos de línea al inicio y final
     return trim($text, "\n");
 }
 
 /**
  * Convierte un texto a párrafos HTML.
- * 
+ *
  * Añade las etiquetas <p> y </p> al inicio y final y reemplaza los saltos de línea \n
  * por las etiquetas de cierre y apertura de párrafo. Además colapsa los espacios
  * en blanco consecutivos.
- * 
+ *
  * @param string $text texto a convertir
- * 
+ *
  * @return string texto metido en párrafos.
  */
 function makeParagraphs(string $text    = ''):string{
-    
+
      // cambia los saltos de línea por etiquetas HTML
     $text =  str_replace("\n", "</p><p>", $text);
     // $text =  str_replace('&#10;', "</p><p>", $text);
-        
+
     // elimina espacios en blanco consecutivos
     $text = preg_replace('/\s+/', ' ', $text);
-    
+
     return "<p>{$text}</p>";
 }
 
 
 /**
  * Función obsoleta que será eliminada con el tiempo
- * 
+ *
  * @param string $text
  * @return string
- * 
+ *
  * @deprecated ahora se usa toHTML()
  */
 function paragraph(string $text    = ''):string{
@@ -152,9 +152,9 @@ function paragraph(string $text    = ''):string{
 /**
  * Convierte líneas que comienzan por guión en listas HTML.
  * Cada línea se considera un "párrafo".
- * 
+ *
  * @param string $html el texto a procesar.
- * 
+ *
  * @return string el HTML con las listas convertidas.
  */
 function makeLists(string $html) {
@@ -218,7 +218,7 @@ function makeLists(string $html) {
 
 /**
  * Convierte los enlaces de texto en enlaces HTML
- * 
+ *
  * @param string $texto texto donde realizar la sustitución
  */
 function makeLinks(string $html): string {
@@ -236,7 +236,7 @@ function makeLinks(string $html): string {
 
 /**
  * Convierte las líneas que comiencen por _hx en cabeceras de orden x (<hx>)
- * 
+ *
  * @param string $html
  * @return string|array|NULL
  */
@@ -254,14 +254,14 @@ function makeHeaders(string $html = '') {
 
 /**
  * Procesa el texto para ser mostrado como HTML
- * 
+ *
  * @param string $text
  * @param bool $endlines
  * @param bool $lists
  * @param bool $headers
  * @param bool $links
  * @param bool $paragraphs
- * 
+ *
  * @return string
  */
 function toHTML(
@@ -271,15 +271,15 @@ function toHTML(
     bool $headers    = true,
     bool $links      = true,
     bool $paragraphs = true
-    
+
 ): string {
-    
+
     if($text){
         $text = $endLines   ? makeEndLines($text)   : $text;
         $text = $lists      ? makeLists($text)      : $text;
         $text = $headers    ? makeHeaders($text)    : $text;
         $text = $links      ? makeLinks($text)      : $text;
-        $text = $paragraphs ? makeParagraphs($text) : $text;       
+        $text = $paragraphs ? makeParagraphs($text) : $text;
     }
     return $text ?? '';
 }
@@ -290,9 +290,9 @@ function toHTML(
 
 /**
  * Formatea un número entero para poner el separador de miles
- * 
+ *
  * @param int $number el número a formatear
- * 
+ *
  * @return string el número formateado
  */
 function formatInt(int $number):string{
@@ -315,18 +315,18 @@ function formatFloat(float $number, int $decimal = 0):string{
 
 /**
  * Convierte un texto a snake case
- * 
+ *
  * @param string $texto el texto a convertir
- * 
+ *
  * @return string el texto convertido
  */
 function toSnakeCase(string $texto): string {
     // reemplaza espacios o guiones por guiones bajos
     $texto = preg_replace('/[\s\-]+/', '_', $texto);
-    
+
     // inserta guiones bajos antes de mayúsculas (de camel case a snake case)
     $texto = preg_replace('/([a-z])([A-Z])/', '$1_$2', $texto);
-    
+
     // convierte todo a minúsculas
     return strtolower($texto);
 }
@@ -335,21 +335,21 @@ function toSnakeCase(string $texto): string {
 
 /**
  * Convierte de snake case a camel o Pascal case
- * 
+ *
  * @param string $texto texto a convertir
  * @param bool $pascal si está a true retornará Pascal Case (inicial en mayúsculas). Opcional, por defecto false
- * 
+ *
  * @return string el resultado de pasar de snake a camel case o Pascal case
  */
 function snakeToCamelCase(string $texto, bool $pascal = false): string {
-    
+
     // divide la cadena en partes separadas por guiones bajos
     $partes = explode('_', strtolower($texto));
-    
+
     // convierte la primera letra de cada parte en mayúscula
-    $partes = array_map('ucfirst', $partes);   
+    $partes = array_map('ucfirst', $partes);
     $resultado = implode('', $partes);
-    
+
     // retorna Pascal case o camel case
     return $pascal? $resultado : lcfirst($resultado);
 }
@@ -365,7 +365,7 @@ function snakeToCamelCase(string $texto, bool $pascal = false): string {
  * @return mixed
  */
 function decodeStringFields(mixed $obj):mixed{
-    
+
     foreach ($obj as $key => $value)
         if (is_string($value)){
             // Primero decodificamos entidades HTML normales
@@ -376,7 +376,7 @@ function decodeStringFields(mixed $obj):mixed{
             $decoded = preg_replace('/\s+/', ' ', $decoded);
             $obj->$key = $decoded;
     }
-    
+
     // retorna el objeto con las html_entities decodificadas
     return $obj;
 }
@@ -388,7 +388,7 @@ function decodeStringFields(mixed $obj):mixed{
  */
 
 function humanDate(string $date, bool $time = true):string{
-    
+
     $months = [
         "enero",
         "febrero",
@@ -403,15 +403,15 @@ function humanDate(string $date, bool $time = true):string{
         "noviembre",
         "diciembre"
     ];
-    
+
     $dateTime = explode(" ", $date);
     $dateArray = explode("-", $dateTime[0]);
-    
+
     $result = intval($dateArray[2])." de ".$months[$dateArray[1]-1]." de ".$dateArray[0];
-    
+
     if($time && ($dateTime[1] ?? false))
-        $result .= ", a las ".$dateTime[1];   
-    
+        $result .= ", a las ".$dateTime[1];
+
     return $result;
 }
 
@@ -448,9 +448,9 @@ function request(){
  * @param int $httpcode código HTTP de la respuesta
  * @param string $status frase de estado HTTP
 
- * 
+ *
  * @return ViewResponse
- * 
+ *
  * @throws ViewException en caso de que algo falle.
  */
 function view(
@@ -484,8 +484,8 @@ function viewExists(string $name):bool{
  * @param string $message mensaje para mostrar.
  * @param Throwable $t error o excepción producida, para preparar mejor la respuesta
  *
- * @return Response 
- * 
+ * @return Response
+ *
  * @throws ViewException si no encuentra la vista.
  *
  */
@@ -509,18 +509,18 @@ function abort(
 
 /**
  * helper que permite realizar redirecciones de forma simple.
- * 
+ *
  * @param string $url URL a la que queremos redireccionar.
  * @param int $delay retardo en la redirección.
  * @param int $httpCode código HTTP
  * @param string $status frase de estado HTTP
  * @param string $contentType tipo MIME de la respuesta
  * @param bool $die finalizar la ejecución tras la redirección?
- * 
+ *
  * @return RedirectResponse
  */
 function redirect(
-    string $url = '/', 
+    string $url = '/',
     int $delay = 0,
     int $httpCode       = 302,
     string $status      = 'FOUND'
@@ -542,11 +542,11 @@ function redirect(
 
 /**
  * Retorna el usuario identificado en la sesión.
- * 
+ *
  * @return User el usuario identificado
  */
 function user(){
-    return Login::user();    
+    return Login::user();
 }
 
 
@@ -561,7 +561,7 @@ function user(){
  * Recupera los valores de los inputs flasheados en sesión (de la petición anterior).
  * Solamente los retorna si estamos en la misma URL, para evitar cruzar inputs
  * entre formularios en distintas URLs.
- * 
+ *
  * @param string $inputName nombre del input a recuperar.
  * @param string $dbValue para las operaciones de edición, valor antiguo de la BDD.
 
@@ -574,14 +574,14 @@ function old(string $inputName, string $dbValue = NULL):string{
 
 /**
  * Selecciona una opción en un input, dependiendo del valor.
- * 
+ *
  * @param string $inputName nombre del input.
  * @param string $value valor a comprobar.
- * 
+ *
  * @return string selected o cadena vacía.
  */
 function oldSelected(
-    string $inputName, 
+    string $inputName,
     string $value
 ):string{
     return request()->previousInputs[$inputName] == $value ? ' selected ' : '';
@@ -590,24 +590,24 @@ function oldSelected(
 
 /**
  * Marca un checkbox o botón de radio, dependiendo del valor.
- * 
+ *
  * @param string $inputName nombre del input.
  * @param string $value valor a comprobar.
  * @param bool $default si debe estar marcado por defecto.
- * 
+ *
  * @return string checked o cadena vacía.
  */
 function oldChecked(
-    string $inputName, 
+    string $inputName,
     string $value,
     bool $default = false
 ):string{
-    
+
     $oldValue = request()->previousInputs[$inputName];
-    
+
     if(!$oldValue && $default)
         return ' checked';
-    
+
     return $oldValue == $value ? ' checked ' : '';
 }
 
@@ -615,13 +615,13 @@ function oldChecked(
 
 /**
  * Crea un token CSRF y un input hidden para colocarlo en el formulario
- * 
+ *
  * @return string el código del input
  */
 function csrf():string{
     // crea un nuevo token CSRF y lo guarda en sesión
     CSRF::create();
-    
+
     // retorna un input hidden para colocarlo en el formulario
     return CSRF::createInput();
 }
