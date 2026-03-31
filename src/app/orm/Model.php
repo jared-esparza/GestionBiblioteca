@@ -168,21 +168,21 @@ abstract class Model{
     public static function create(array $data, $id = null):object{
 
         $class = get_called_class();    // recupera el nombre de la clase del modelo
-        $entity = new $class();         // crea una instancia de esa clase
+
+        // si no hay ID, estamos creando una nueva entidad
+        // si hay id, pretendemos hacer una actualización, así que recuperaremos el objeto
+        $entity = $id ? $class::findOrFail($id) : new $class();
 
         // mapea los datos del array asociativo en las propiedades del objeto
         foreach($data as $property => $value)
             // pero solamente lo hace si el nombre de la propiedad permite la asignación masiva,
-            // esto es, está incluida en en el array $fillable de la clase del modelo
+            // esto es, está incluida en en el array $fillable del modelo
             if(in_array($property, $class::getFillables()))
                 $entity->$property = $value;
 
-
-        $entity->id = $id; // toma el id que llega por parámetro
-
         // una vez tiene el objeto preparado, lo guarda o lo actualiza en la BDD
         // si hay ID hará una actualización, sino un guardado
-        $entity->id ? $entity->update() : $entity->save();
+        $id ? $entity->update() : $entity->save();
 
         return $entity;
     }
@@ -581,8 +581,14 @@ abstract class Model{
      *
      * @return int el autonumérico asignado en la base de datos o 0 si la tabla no dispone de autonumérico.
      */
-    public function save():int{
+     public function save():int{
 
+        // antes de guardar, hay que validar (si el modelo tiene el método validate())
+        if(is_callable([$this, 'validate']))
+            if($errors = $this->validate())
+                throw new ValidationException(arrayToString($errors, false, false));
+
+        // FIXME: hacer esto con el QueryBuilder
         $tabla = self::getTable(); // recupera el nombre de la tabla
 
         // prepara la consulta de inserción (esta es más compleja)
@@ -623,6 +629,12 @@ abstract class Model{
      */
     public function update():int{
 
+        // antes de guardar, hay que validar (si el modelo tiene el método validate())
+        if(is_callable([$this, 'validate']))
+            if($errors = $this->validate())
+                throw new ValidationException(arrayToString($errors, false, false));
+
+        // FIXME: hacer esto con el QueryBuilder
         $tabla = self::getTable(); // recupera el nombre de la tabla
 
         unset($this->updated_at);  // para que se actualice automáticamente el "updated_at" en la BDD, no le podemos enviar 'null'.
