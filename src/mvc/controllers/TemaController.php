@@ -44,6 +44,9 @@ class TemaController extends Controller{
                 throw new SQLException($e->getMessage());
             }
             return redirect("/tema/create");
+        }catch(ValidationException $e){
+            Session::error($e->getMessage());
+            return redirect("/tema/create");
         }
     }
 
@@ -70,6 +73,9 @@ class TemaController extends Controller{
             if(DEBUG){
                 throw new SQLException($e->getMessage());
             }
+            return redirect("/tema/edit/$id");
+        }catch(ValidationException $e){
+            Session::error($e->getMessage());
             return redirect("/tema/edit/$id");
         }
     }

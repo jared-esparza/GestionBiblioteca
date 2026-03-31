@@ -15,4 +15,12 @@ class Libro extends Model{
         return DB::delete($consulta);
     }
 
+    public function validate():array{
+        $errores = [];
+        if(empty($this->edicion) || $this->edicion<0){
+            $errores['edicion'] = "Error en la edicion";
+        }
+        return $errores;
+    }
+
 }

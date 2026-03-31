@@ -108,6 +108,9 @@ class LibroController extends Controller{
                 throw new UploadException($e->getMessage());
             }
             return redirect("/Libro/edit/$libro->id");
+        }catch(ValidationException $e){
+            Session::error($e->getMessage());
+            return redirect("/Libro/create");
         }
     }
 
@@ -153,6 +156,9 @@ class LibroController extends Controller{
                 throw new UploadException($e->getMessage());
             }
             return redirect("/Libro/edit/$libro->id");
+        }catch(ValidationException $e){
+            Session::error($e->getMessage());
+            return redirect("/libro/edit/$id");
         }catch(Exception $e){
             throw new Exception($e->getMessage());
         }
