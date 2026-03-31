@@ -180,6 +180,7 @@ abstract class Model{
             if(in_array($property, $class::getFillables()))
                 $entity->$property = $value;
 
+        $entity->saneate();
         // una vez tiene el objeto preparado, lo guarda o lo actualiza en la BDD
         // si hay ID hará una actualización, sino un guardado
         $id ? $entity->update() : $entity->save();
