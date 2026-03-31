@@ -29,7 +29,12 @@
                     <input type="text" name="idejemplar" value="<?= old('idejemplar')?>">
                     <br>
                     <label>ID Socio:</label>
-                    <input type="text" name="idsocio" value="<?= old('idsocio')?>">
+                    <?php if($idsocio){ ?>
+                        <input type="text" name="idsocio" value="<?=$idsocio?>" disabled>
+
+                    <?php } else { ?>
+                        <input type="text" name="idsocio" value="<?= old('idsocio')?>">
+                    <?php } ?>
                     <br>
                     <label>Limite:</label>
                     <input type="date" name="limite" value="<?= old('limite')?>">

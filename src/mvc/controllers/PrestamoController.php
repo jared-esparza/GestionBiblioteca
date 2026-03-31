@@ -21,8 +21,11 @@ class PrestamoController extends Controller{
     //     return view('prestamo/show', ['prestamo'=>$prestamo]);
     // }
 
-    public function create(){
-        return view('prestamo/create');
+    public function create($idsocio=null){
+        if($idsocio){
+            Socio::findOrFail($idsocio, "No se ha encontrado el socio indicado");
+        }
+        return view('prestamo/create', ['idsocio'=>$idsocio]);
     }
 
     public function store(){
