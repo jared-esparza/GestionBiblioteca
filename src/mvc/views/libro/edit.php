@@ -61,7 +61,7 @@
                     <input type="text" name="caracteristicas" value="<?= old('caracteristicas', $libro->caracteristicas)?>">
                     <br>
                     <label>Sinopsis:</label>
-                    <textarea name="sinopsis" class="w50" ><?= old('sinopsis')?></textarea>
+                    <textarea name="sinopsis" class="w50" ><?= old('sinopsis', $libro->sinopsis)?></textarea>
                     <br>
                     <div class="centered mt2">
                     <input type="submit" class="button" name="actualizar" value="Actualizar">

@@ -45,6 +45,9 @@ class SocioController extends Controller{
                 throw new SQLException($e->getMessage());
             }
             return redirect("/socio/create");
+        }catch(ValidationException $e){
+            Session::error($e->getMessage());
+            return redirect("/Socio/create");
         }
     }
 
@@ -73,6 +76,9 @@ class SocioController extends Controller{
                 throw new SQLException($e->getMessage());
             }
             return redirect("/socio/edit/$id");
+        }catch(ValidationException $e){
+            Session::error($e->getMessage());
+            return redirect("/Socio/edit/$id");
         }
     }
 

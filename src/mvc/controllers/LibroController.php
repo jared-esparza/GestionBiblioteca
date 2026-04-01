@@ -155,7 +155,7 @@ class LibroController extends Controller{
             if(DEBUG){
                 throw new UploadException($e->getMessage());
             }
-            return redirect("/Libro/edit/$libro->id");
+            return redirect("/Libro/edit/$id");
         }catch(ValidationException $e){
             Session::error($e->getMessage());
             return redirect("/libro/edit/$id");

@@ -32,7 +32,7 @@
                     <p><b>Edición:</b> <?= $libro->edicion?></p>
                     <p><b>Edad recomendada:</b> <?= $libro->edadrecomendada ?? ' -- '?></p>
                     <p><b>Páginas:</b> <?= $libro->paginas ?? ' -- '?></p>
-                    <p><b>Características:</b> <?= $libro->caracterisitcas ?? ' -- '?></p>
+                    <p><b>Características:</b> <?= $libro->caracteristicas ?? ' -- '?></p>
                 </div>
                 <figure class="flex1 centrado p2">
                     <img src="<?= BOOK_IMAGE_FOLDER . '/' .($libro->portada ?? DEFAULT_BOOK_IMAGE) ?>" class="cover with-modal">
