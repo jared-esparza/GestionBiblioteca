@@ -2,11 +2,19 @@
 class EjemplarController extends Controller{
 
     public function create(int $id = 0){
+        if(!Login::oneRole(LIBRARIAN_PANEL_ROLES)){
+            Session::error("No puedes realizar esta operación.");
+            return redirect('/');
+        }
         $libro = Libro::findOrfail($id);
         return view('ejemplar/create', ['libro'=> $libro]);
     }
 
     public function store(){
+        if(!Login::oneRole(LIBRARIAN_PANEL_ROLES)){
+            Session::error("No puedes realizar esta operación.");
+            return redirect('/');
+        }
         if(!request()->has('guardar')){
             throw new FormException("No se recibió el formulario");
         }
@@ -29,10 +37,18 @@ class EjemplarController extends Controller{
     }
 
     public function edit(int $id = 0){
+        if(!Login::oneRole(LIBRARIAN_PANEL_ROLES)){
+            Session::error("No puedes realizar esta operación.");
+            return redirect('/');
+        }
         $ejemplar = Ejemplar::findOrFail($id, "No se encontró el ejemplar");
         return view('ejemplar/edit', ['ejemplar'=>$ejemplar]);
     }
     public function update(){
+        if(!Login::oneRole(LIBRARIAN_PANEL_ROLES)){
+            Session::error("No puedes realizar esta operación.");
+            return redirect('/');
+        }
         if(!request()->has('actualizar')){
             throw new FormException("No se recibieron datos.");
         }
@@ -52,6 +68,11 @@ class EjemplarController extends Controller{
     }
 
     public function destroy(int $id = 0){
+
+        if(!Login::oneRole(LIBRARIAN_PANEL_ROLES)){
+            Session::error("No puedes realizar esta operación.");
+            return redirect('/');
+        }
 
         $ejemplar = Ejemplar::findOrFail($id, "No se encontró el ejemplar");
 
