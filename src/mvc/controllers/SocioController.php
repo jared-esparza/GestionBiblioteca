@@ -6,6 +6,11 @@ class SocioController extends Controller{
 
     public function list(int $page = 1){
 
+        if(!Login::oneRole(LIBRARIAN_PANEL_ROLES)){
+            Session::error("No puedes realizar esta operación.");
+            return redirect('/');
+        }
+
         $filtro = Filter::apply('socios');
         $total = $filtro ? Socio::filteredResults($filtro): Socio::total();
         $limit = RESULTS_PER_PAGE;
@@ -17,16 +22,28 @@ class SocioController extends Controller{
     }
 
     public function show(int $id = 0){
+        if(!Login::oneRole(LIBRARIAN_PANEL_ROLES)){
+            Session::error("No puedes realizar esta operación.");
+            return redirect('/');
+        }
         $socio = Socio::findOrFail($id);
         $prestamos = $socio->hasMany('V_prestamo');
         return view('socio/show', ['socio'=>$socio, 'prestamos'=>$prestamos]);
     }
 
     public function create(){
+        if(!Login::oneRole(LIBRARIAN_PANEL_ROLES)){
+            Session::error("No puedes realizar esta operación.");
+            return redirect('/');
+        }
         return view('socio/create');
     }
 
     public function store(){
+        if(!Login::oneRole(LIBRARIAN_PANEL_ROLES)){
+            Session::error("No puedes realizar esta operación.");
+            return redirect('/');
+        }
         if(!request()->has('guardar')){
             throw new FormException("No se recibió el formulario");
         }
@@ -52,11 +69,19 @@ class SocioController extends Controller{
     }
 
     public function edit(int $id = 0){
+        if(!Login::oneRole(LIBRARIAN_PANEL_ROLES)){
+            Session::error("No puedes realizar esta operación.");
+            return redirect('/');
+        }
         $socio = Socio::findOrFail($id, "No se encontró el socio");
         $prestamos = $socio->hasMany('V_prestamo');
         return view('socio/edit', ['socio'=>$socio, 'prestamos'=>$prestamos]);
     }
     public function update(){
+        if(!Login::oneRole(LIBRARIAN_PANEL_ROLES)){
+            Session::error("No puedes realizar esta operación.");
+            return redirect('/');
+        }
         if(!request()->has('actualizar')){
             throw new FormException("No se recibieron datos.");
         }
@@ -83,11 +108,19 @@ class SocioController extends Controller{
     }
 
     public function delete(int $id = 0){
+        if(!Login::oneRole(LIBRARIAN_PANEL_ROLES)){
+            Session::error("No puedes realizar esta operación.");
+            return redirect('/');
+        }
         $socio = Socio::findOrFail($id, "No existe el socio");
         return view("socio/delete", ["socio"=>$socio]);
     }
 
     public function destroy(){
+        if(!Login::oneRole(LIBRARIAN_PANEL_ROLES)){
+            Session::error("No puedes realizar esta operación.");
+            return redirect('/');
+        }
         if(!request()->has("borrar")){
             throw new FormException("No se recibieron datos");
         }
