@@ -52,8 +52,10 @@
                         <span data-label="Descripción"><?= $tema->descripcion ?></span>
                         <span data-label="Operaciones" class="centrado">
                             <a href="/Tema/show/<?= $tema->id ?>">Ver</a>
+                            <?php if(Login::oneRole(LIBRARIAN_PANEL_ROLES)){ ?>
                             <a href="/Tema/edit/<?= $tema->id ?>">Editar</a>
                             <a href="/Tema/delete/<?= $tema->id ?>">Borrar</a>
+                            <?php } ?>
                         </span>
                     </div>
                 <?php } ?>
@@ -65,7 +67,10 @@
                 </div>
             <?php } ?>
             <div class="centered">
+                <?php if(Login::oneRole(LIBRARIAN_PANEL_ROLES)){ ?>
                 <a class="button-success" href="/Tema/create">Nuevo tema</a>
+                <?php } ?>
+
                 <a class="button" onclick="history.back()">Atrás</a>
             </div>
         </main>

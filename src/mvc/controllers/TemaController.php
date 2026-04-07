@@ -22,10 +22,18 @@ class TemaController extends Controller{
     }
 
     public function create(){
+        if(!Login::oneRole(LIBRARIAN_PANEL_ROLES)){
+            Session::error("No puedes realizar esta operación.");
+            return redirect('/');
+        }
         return view('tema/create');
     }
 
     public function store(){
+        if(!Login::oneRole(LIBRARIAN_PANEL_ROLES)){
+            Session::error("No puedes realizar esta operación.");
+            return redirect('/');
+        }
         if(!request()->has('guardar')){
             throw new FormException("No se recibió el formulario");
         }
@@ -51,10 +59,18 @@ class TemaController extends Controller{
     }
 
     public function edit(int $id = 0){
+        if(!Login::oneRole(LIBRARIAN_PANEL_ROLES)){
+            Session::error("No puedes realizar esta operación.");
+            return redirect('/');
+        }
         $tema = Tema::findOrFail($id, "No se encontró el tema");
         return view('tema/edit', ['tema'=>$tema]);
     }
     public function update(){
+        if(!Login::oneRole(LIBRARIAN_PANEL_ROLES)){
+            Session::error("No puedes realizar esta operación.");
+            return redirect('/');
+        }
         if(!request()->has('actualizar')){
             throw new FormException("No se recibieron datos.");
         }
@@ -81,11 +97,19 @@ class TemaController extends Controller{
     }
 
     public function delete(int $id = 0){
+        if(!Login::oneRole(LIBRARIAN_PANEL_ROLES)){
+            Session::error("No puedes realizar esta operación.");
+            return redirect('/');
+        }
         $tema = Tema::findOrFail($id, "No existe el tema");
         return view("tema/delete", ["tema"=>$tema]);
     }
 
     public function destroy(){
+        if(!Login::oneRole(LIBRARIAN_PANEL_ROLES)){
+            Session::error("No puedes realizar esta operación.");
+            return redirect('/');
+        }
         if(!request()->has("borrar")){
             throw new FormException("No se recibieron datos");
         }
