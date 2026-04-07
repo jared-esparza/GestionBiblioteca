@@ -66,9 +66,11 @@
 
                         <span data-label="Operaciones" class="centrado">
                            <a href="/Libro/show/<?= $libro->id ?>">Ver</a>
+                           <?php if(Login::oneRole(LIBRARIAN_PANEL_ROLES)){ ?>
                            <a href="/Libro/edit/<?= $libro->id ?>">Editar</a>
                            <?php if(!$libro->ejemplares){ ?>
                                 <a href="/Libro/delete/<?= $libro->id ?>">Borrar</a>
+                           <?php } ?>
                            <?php } ?>
                         </span>
                     </div>
@@ -81,7 +83,9 @@
                 </div>
             <?php } ?>
             <div class="centered">
+                <?php if(Login::oneRole(LIBRARIAN_PANEL_ROLES)){ ?>
                  <a class="button-success flex1" href="/Libro/create">Nuevo libro</a>
+                 <?php } ?>
                 <a class="button" onclick="history.back()">Atrás</a>
             </div>
         </main>

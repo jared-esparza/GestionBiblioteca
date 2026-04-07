@@ -86,8 +86,10 @@
             <div class="centrado">
                 <a class="button" onclick="history.back()">Atrás</a>
                 <a class="button" href="/Libro/list">Lista de libros</a>
+                <?php if(Login::oneRole(LIBRARIAN_PANEL_ROLES)){ ?>
                 <a class="button" href="/Libro/edit/<?=$libro->id?>">Editar</a>
                 <a class="button" href="/Libro/delete/<?=$libro->id?>">Eliminar</a>
+                <?php } ?>
             </div>
         </main>
         <?= $template->footer() ?>

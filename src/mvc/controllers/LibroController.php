@@ -34,6 +34,10 @@ class LibroController extends Controller{
     }
 
     public function create(){
+        if(!Login::oneRole(LIBRARIAN_PANEL_ROLES)){
+            Session::error("No puedes realizar esta operación.");
+            return redirect('/');
+        }
         $listaTemas = Tema::orderBy('tema');
         return view('libro/create' , ['listaTemas'=>$listaTemas]);
     }
@@ -75,6 +79,10 @@ class LibroController extends Controller{
     // }
 
     public function store(){
+        if(!Login::oneRole(LIBRARIAN_PANEL_ROLES)){
+            Session::error("No puedes realizar esta operación.");
+            return redirect('/');
+        }
         if(!request()->has('guardar')){
             throw new FormException("No se recibió el formulario");
         }
@@ -115,6 +123,10 @@ class LibroController extends Controller{
     }
 
     public function edit(int $id = 0){
+        if(!Login::oneRole(LIBRARIAN_PANEL_ROLES)){
+            Session::error("No puedes realizar esta operación.");
+            return redirect('/');
+        }
         $libro = Libro::findOrFail($id, "No se encontró el libro");
         $ejemplares = $libro->hasMany('Ejemplar');
         $temas = $libro->belongsToMany('Tema', 'temas_libros');
@@ -122,6 +134,10 @@ class LibroController extends Controller{
         return view('libro/edit', ['libro'=>$libro, 'ejemplares'=>$ejemplares, 'temas'=>$temas, 'listaTemas'=>$listaTemas]);
     }
     public function update(){
+        if(!Login::oneRole(LIBRARIAN_PANEL_ROLES)){
+            Session::error("No puedes realizar esta operación.");
+            return redirect('/');
+        }
         if(!request()->has('actualizar')){
             throw new FormException("No se recibieron datos.");
         }
@@ -165,6 +181,10 @@ class LibroController extends Controller{
     }
 
     public function dropcover(){
+        if(!Login::oneRole(LIBRARIAN_PANEL_ROLES)){
+            Session::error("No puedes realizar esta operación.");
+            return redirect('/');
+        }
         if(!request()->has("borrar")){
             throw new FormException("No se ha recibido el formulario.");
         }
@@ -189,11 +209,19 @@ class LibroController extends Controller{
     }
 
     public function delete(int $id = 0){
+        if(!Login::oneRole(LIBRARIAN_PANEL_ROLES)){
+            Session::error("No puedes realizar esta operación.");
+            return redirect('/');
+        }
         $libro = Libro::findOrFail($id, "No existe el libro");
         return view("libro/delete", ["libro"=>$libro]);
     }
 
     public function destroy(){
+        if(!Login::oneRole(LIBRARIAN_PANEL_ROLES)){
+            Session::error("No puedes realizar esta operación.");
+            return redirect('/');
+        }
         if(!request()->has("borrar")){
             throw new FormException("No se recibieron datos");
         }
@@ -226,6 +254,10 @@ class LibroController extends Controller{
     }
 
     public function addtema(){
+        if(!Login::oneRole(LIBRARIAN_PANEL_ROLES)){
+            Session::error("No puedes realizar esta operación.");
+            return redirect('/');
+        }
         if(empty(request()->post("add"))){
             throw new FormException("No se recibió el formulario");
         }
@@ -249,6 +281,10 @@ class LibroController extends Controller{
     }
 
     public function removetema(){
+        if(!Login::oneRole(LIBRARIAN_PANEL_ROLES)){
+            Session::error("No puedes realizar esta operación.");
+            return redirect('/');
+        }
         if(empty(request()->post("remove"))){
             throw new FormException("No se ha recibodo el formulario");
         }
