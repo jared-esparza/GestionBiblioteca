@@ -6,6 +6,11 @@ class PrestamoController extends Controller{
 
     public function list(int $page = 1){
 
+        if(!Login::oneRole(LIBRARIAN_PANEL_ROLES)){
+            Session::error("No puedes realizar esta operación.");
+            return redirect('/');
+        }
+
         $filtro = Filter::apply('prestamos');
         $total = $filtro ? V_prestamo::filteredResults($filtro): V_prestamo::total();
         $limit = RESULTS_PER_PAGE;
@@ -22,6 +27,10 @@ class PrestamoController extends Controller{
     // }
 
     public function create($idsocio=null){
+        if(!Login::oneRole(LIBRARIAN_PANEL_ROLES)){
+            Session::error("No puedes realizar esta operación.");
+            return redirect('/');
+        }
         $socio = null;
         if($idsocio){
             $socio = Socio::findOrFail($idsocio, "No se ha encontrado el socio indicado");
@@ -30,6 +39,10 @@ class PrestamoController extends Controller{
     }
 
     public function store(){
+        if(!Login::oneRole(LIBRARIAN_PANEL_ROLES)){
+            Session::error("No puedes realizar esta operación.");
+            return redirect('/');
+        }
         if(!request()->has('guardar')){
             throw new FormException("No se recibió el formulario");
         }
@@ -52,15 +65,27 @@ class PrestamoController extends Controller{
     }
 
     public function issue(int $id = 0){
+        if(!Login::oneRole(LIBRARIAN_PANEL_ROLES)){
+            Session::error("No puedes realizar esta operación.");
+            return redirect('/');
+        }
         $prestamo = Prestamo::findOrFail($id, "No se encontró el prestamo");
         return view('prestamo/issue', ['prestamo'=>$prestamo]);
     }
 
     public function extend(int $id = 0){
+        if(!Login::oneRole(LIBRARIAN_PANEL_ROLES)){
+            Session::error("No puedes realizar esta operación.");
+            return redirect('/');
+        }
         $prestamo = Prestamo::findOrFail($id, "No se encontró el prestamo");
         return view('prestamo/extend', ['prestamo'=>$prestamo]);
     }
     public function update(){
+        if(!Login::oneRole(LIBRARIAN_PANEL_ROLES)){
+            Session::error("No puedes realizar esta operación.");
+            return redirect('/');
+        }
         if(!request()->has('actualizar')){
             throw new FormException("No se recibieron datos.");
         }
@@ -79,11 +104,19 @@ class PrestamoController extends Controller{
     }
 
     public function delete(int $id = 0){
+        if(!Login::oneRole(LIBRARIAN_PANEL_ROLES)){
+            Session::error("No puedes realizar esta operación.");
+            return redirect('/');
+        }
         $prestamo = Prestamo::findOrFail($id, "No existe el prestamo");
         return view("prestamo/delete", ["prestamo"=>$prestamo]);
     }
 
     public function destroy(){
+        if(!Login::oneRole(LIBRARIAN_PANEL_ROLES)){
+            Session::error("No puedes realizar esta operación.");
+            return redirect('/');
+        }
         if(!request()->has("borrar")){
             throw new FormException("No se recibieron datos");
         }
@@ -103,6 +136,10 @@ class PrestamoController extends Controller{
     }
 
     public function returndate(int $id){
+        if(!Login::oneRole(LIBRARIAN_PANEL_ROLES)){
+            Session::error("No puedes realizar esta operación.");
+            return redirect('/');
+        }
         Prestamo::create(['devolucion'=>date('Y-m-d')], $id);
         return redirect('/Prestamo');
     }
